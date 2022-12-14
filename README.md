@@ -48,6 +48,7 @@ library(bennu)
 #> Warning: replacing previous import 'lifecycle::last_warnings' by
 #> 'rlang::last_warnings' when loading 'pillar'
 ## basic example code
+d <- generate_model_data()
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?

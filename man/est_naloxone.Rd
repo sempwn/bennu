@@ -4,35 +4,18 @@
 \alias{est_naloxone}
 \title{Run Bayesian estimation of naloxone number under-reporting}
 \usage{
-est_naloxone(
-  N_region,
-  N_t,
-  regions,
-  times,
-  Orders2D,
-  Reported_Distributed,
-  Reported_Used,
-  region_name,
-  psi_vec = c(0.7, 0.2, 0.1),
-  run_estimation = TRUE
-)
+est_naloxone(d, psi_vec = c(0.7, 0.2, 0.1), run_estimation = TRUE)
 }
 \arguments{
-\item{N_region}{Number of regions}
-
-\item{N_t}{number of time steps}
-
-\item{regions}{vector (time, region) of regions (coded 1 to N_region)}
-
-\item{times}{vector (time, region) of regions (coded 1 to N_t)}
-
-\item{Orders2D}{vector (time, region) of orders}
-
-\item{Reported_Distributed}{vector (time, region) reported as distributed}
-
-\item{Reported_Used}{vector (time, region) reported as used}
-
-\item{region_name}{bring in region names}
+\item{d}{data frame with format
+\describe{
+\item{regions}{unique id for region}
+\item{times}{time in months}
+\item{Orders}{Kits ordered}
+\item{Reported_Used}{Kits reported as used}
+\item{Reported_Distributed}{Kits reported as distributed}
+\item{region_name}{Optional label for region}
+}}
 
 \item{psi_vec}{reporting delay distribution}
 
@@ -40,5 +23,5 @@ est_naloxone(
 sample from prior only}
 }
 \description{
-Samples from Bayesian model
+Samples from Bayesian model using input from data frame
 }

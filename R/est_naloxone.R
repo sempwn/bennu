@@ -15,7 +15,7 @@
 #' @param run_estimation if `TRUE` will sample from posterior otherwise will
 #' sample from prior only
 #' @export
-est_naloxone <- function(N_region, N_t, regions,
+est_naloxone_vec <- function(N_region, N_t, regions,
                          times, Orders2D, Reported_Distributed,
                          Reported_Used,
                          region_name,
@@ -83,3 +83,53 @@ est_naloxone <- function(N_region, N_t, regions,
   )
   return(out)
 }
+
+
+#' Run Bayesian estimation of naloxone number under-reporting
+#'
+#' @description
+#' Samples from Bayesian model using input from data frame
+#' @param d data frame with format
+#' \describe{
+#'   \item{regions}{unique id for region}
+#'   \item{times}{time in months}
+#'   \item{Orders}{Kits ordered}
+#'   \item{Reported_Used}{Kits reported as used}
+#'   \item{Reported_Distributed}{Kits reported as distributed}
+#'   \item{region_name}{Optional label for region}
+#' }
+#' @inheritParams est_naloxone_vec
+#' @export
+est_naloxone <- function(d,
+                         psi_vec = c(0.7, 0.2, 0.1),
+                         run_estimation = TRUE){
+
+  # checks for data
+  d <- d %>%
+    dplyr::arrange(regions,times)
+
+  N_region <- length(unique(d[["regions"]]))
+  N_t <- length(unique(d[["times"]]))
+  regions <- d[["regions"]]
+  times <- d[["times"]]
+  Orders2D <- ""
+  Reported_Distributed <- d[["Reported_Distributed"]]
+  Reported_Used <- d[["Reported_Used"]]
+
+  region_name_label <- intersect(c("region_name","regions"),names(d))[1]
+  region_name <- d[[region_name_label]]
+
+  Orders2D <- d %>%
+    dplyr::pivot_wider(times,names_from = HSDA_name,values_from = Orders) %>%
+    dpylr::select(-times)
+
+  obj <- est_naloxone_vec(N_region, N_t, regions,
+                               times, Orders2D, Reported_Distributed,
+                               Reported_Used,
+                               region_name,
+                               psi_vec = psi_vec,
+                               run_estimation = run_estimation)
+
+  return(obj)
+}
+
