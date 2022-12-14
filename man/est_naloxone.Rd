@@ -2,10 +2,43 @@
 % Please edit documentation in R/est_naloxone.R
 \name{est_naloxone}
 \alias{est_naloxone}
-\title{Run estimation}
+\title{Run Bayesian estimation of naloxone number under-reporting}
 \usage{
-est_naloxone()
+est_naloxone(
+  N_region,
+  N_t,
+  regions,
+  times,
+  Orders2D,
+  Reported_Distributed,
+  Reported_Used,
+  region_name,
+  psi_vec = c(0.7, 0.2, 0.1),
+  run_estimation = TRUE
+)
+}
+\arguments{
+\item{N_region}{Number of regions}
+
+\item{N_t}{number of time steps}
+
+\item{regions}{vector (time, region) of regions (coded 1 to N_region)}
+
+\item{times}{vector (time, region) of regions (coded 1 to N_t)}
+
+\item{Orders2D}{vector (time, region) of orders}
+
+\item{Reported_Distributed}{vector (time, region) reported as distributed}
+
+\item{Reported_Used}{vector (time, region) reported as used}
+
+\item{region_name}{bring in region names}
+
+\item{psi_vec}{reporting delay distribution}
+
+\item{run_estimation}{if \code{TRUE} will sample from posterior otherwise will
+sample from prior only}
 }
 \description{
-Run estimation
+Samples from Bayesian model
 }
