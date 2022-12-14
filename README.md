@@ -3,13 +3,23 @@
 
 # bennu <img src="man/figures/logo.png" align="right" height="139" />
 
-Bayesian Estimation of Naloxone Numbers Underreporting
+**B**ayesian **E**stimation of **N**aloxone **N**umbers
+**U**nderreporting (**BENNU**)
+
+*The package name comes from the Welsh word for “to finish” (pronounced
+benn-y)*
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/sempwn/bennu/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sempwn/bennu/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/sempwn/bennu/branch/main/graph/badge.svg)](https://app.codecov.io/gh/sempwn/bennu?branch=main)
+![GitHub](https://img.shields.io/github/license/sempwn/bennu?style=plastic)
 <!-- badges: end -->
 
-The goal of bennu is to …
+An R package 📦 for generating estimates of total naloxone kit numbers
+distributed and used from naloxone kit orders data.
 
 ## Installation
 
@@ -33,6 +43,10 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(bennu)
+#> Warning: replacing previous import 'lifecycle::last_warnings' by
+#> 'rlang::last_warnings' when loading 'tibble'
+#> Warning: replacing previous import 'lifecycle::last_warnings' by
+#> 'rlang::last_warnings' when loading 'pillar'
 ## basic example code
 ```
 
