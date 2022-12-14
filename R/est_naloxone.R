@@ -1,11 +1,32 @@
 
-#' Run estimation
+#' Run Bayesian estimation of naloxone number under-reporting
+#'
+#' @description
+#' Samples from Bayesian model
+#' @param N_region Number of regions
+#' @param N_t number of time steps
+#' @param regions vector (time, region) of regions (coded 1 to N_region)
+#' @param times vector (time, region) of regions (coded 1 to N_t)
+#' @param Orders2D vector (time, region) of orders
+#' @param Reported_Distributed vector (time, region) reported as distributed
+#' @param Reported_Used vector (time, region) reported as used
+#' @param region_name bring in region names
+#' @param psi_vec reporting delay distribution
+#' @param run_estimation if `TRUE` will sample from posterior otherwise will
+#' sample from prior only
 #' @export
-est_naloxone <- function() {
+est_naloxone <- function(N_region, N_t, regions,
+                         times, Orders2D, Reported_Distributed,
+                         Reported_Used,
+                         region_name,
+                         psi_vec = c(0.7, 0.2, 0.1),
+                         run_estimation = TRUE) {
+  Orders <- as.vector(t(Orders2D))
+
   stan_data <-
     list(
       # // a switch to evaluate the likelihood
-      run_estimation = 1,
+      run_estimation = as.numeric(run_estimation),
       #
       # // number of regions
       N_region = N_region,
@@ -20,30 +41,30 @@ est_naloxone <- function() {
       # //max number for delay distribution
       max_delays = 3,
       #
-      # // vector (time, HSDA) of regions (coded 1 to N_region)
+      # // vector (time, region) of regions (coded 1 to N_region)
       regions = regions,
       #
-      # // vector (time, HSDA) of regions (coded 1 to N_t)
+      # // vector (time, region) of regions (coded 1 to N_t)
       times = times,
       #
-      # // vector (time, HSDA) of orders
+      # // vector (time, region) of orders
       Orders = Orders,
       #
       # // create 2D version of Orders data
       Orders2D = Orders2D,
       #
-      # // vector (time, HSDA) reported as distributed
+      # // vector (time, region) reported as distributed
       Reported_Distributed = Reported_Distributed,
       #
-      # // vector (time, HSDA) reported as used
+      # // vector (time, region) reported as used
       Reported_Used = Reported_Used,
 
       # // reporting delay distribution
       N_psi = 3,
       psi = psi_vec,
 
-      # // bring in HSDA / site type names
-      Region_name = Region_name,
+      # // bring in region / site type names
+      Region_name = region_name,
 
       # // hyperpiors
       mu0_mu = 0,
