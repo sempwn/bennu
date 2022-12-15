@@ -17,6 +17,7 @@ Biarch: true
 Depends: 
     R (>= 3.4.0)
 Imports: 
+    dplyr,
     magrittr,
     methods,
     Rcpp (>= 0.12.0),
@@ -33,6 +34,7 @@ LinkingTo:
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
 Suggests: 
+    bayesplot,
     covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

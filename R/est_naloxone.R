@@ -14,13 +14,26 @@
 #' @param psi_vec reporting delay distribution
 #' @param run_estimation if `TRUE` will sample from posterior otherwise will
 #' sample from prior only
+#' @param chains A positive integer specifying the number of Markov chains.
+#' The default is 4.
+#' @param iter A positive integer specifying the number of iterations
+#' for each chain (including warmup). The default is 2000.
+#' @param seed Seed for random number generation
+#' @param adapt_delta (double, between 0 and 1, defaults to 0.8)
+#' @param ... other parameters to pass to [rstan::sampling]
 #' @export
 est_naloxone_vec <- function(N_region, N_t, regions,
                          times, Orders2D, Reported_Distributed,
                          Reported_Used,
                          region_name,
                          psi_vec = c(0.7, 0.2, 0.1),
-                         run_estimation = TRUE) {
+                         run_estimation = TRUE,
+                         chains=4,
+                         iter=2000,
+                         seed=42,
+                         adapt_delta = 0.85,
+                         ...
+                         ) {
   Orders <- as.vector(t(Orders2D))
 
   stan_data <-
@@ -76,12 +89,13 @@ est_naloxone_vec <- function(N_region, N_t, regions,
   fit <- rstan::sampling(
     stanmodels$distribution_covariate_model,
     data = stan_data,
-    iter = 1000,
-    seed = 42, # fix seed to recreate results
-    control = list(adapt_delta = 0.85),
-    chains = 4
+    iter = iter,
+    seed = seed, # fix seed to recreate results
+    control = list(adapt_delta = adapt_delta),
+    chains = chains,
+    ...
   )
-  return(out)
+  return(fit)
 }
 
 
@@ -98,11 +112,29 @@ est_naloxone_vec <- function(N_region, N_t, regions,
 #'   \item{Reported_Distributed}{Kits reported as distributed}
 #'   \item{region_name}{Optional label for region}
 #' }
+#' @examples
+#' library(rstan)
+#' library(bayesplot)
+#'
+#' rstan_options(auto_write = TRUE)
+#' options(mc.cores = parallel::detectCores(logical = FALSE))
+#'
+#' d <- generate_model_data()
+#' fit <- est_naloxone(d,iter=100,chains=1)
+#' mcmc_pairs(fit, pars = c("sigma","mu0"),
+#'            off_diag_args = list(size = 1, alpha = 0.5))
 #' @inheritParams est_naloxone_vec
 #' @export
 est_naloxone <- function(d,
                          psi_vec = c(0.7, 0.2, 0.1),
-                         run_estimation = TRUE){
+                         run_estimation = TRUE,
+                         chains=4,
+                         iter=2000,
+                         seed=42,
+                         adapt_delta = 0.85,
+                         ...){
+
+  Orders <- NULL
 
   # checks for data
   d <- d %>%
@@ -112,7 +144,7 @@ est_naloxone <- function(d,
   N_t <- length(unique(d[["times"]]))
   regions <- d[["regions"]]
   times <- d[["times"]]
-  Orders2D <- ""
+
   Reported_Distributed <- d[["Reported_Distributed"]]
   Reported_Used <- d[["Reported_Used"]]
 
@@ -120,8 +152,9 @@ est_naloxone <- function(d,
   region_name <- d[[region_name_label]]
 
   Orders2D <- d %>%
-    dplyr::pivot_wider(times,names_from = HSDA_name,values_from = Orders) %>%
-    dpylr::select(-times)
+    tidyr::pivot_wider(regions,names_from = times,values_from = Orders) %>%
+    dplyr::select(-regions) %>%
+    as.matrix()
 
   obj <- est_naloxone_vec(N_region, N_t, regions,
                                times, Orders2D, Reported_Distributed,

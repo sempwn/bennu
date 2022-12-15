@@ -14,7 +14,12 @@ est_naloxone_vec(
   Reported_Used,
   region_name,
   psi_vec = c(0.7, 0.2, 0.1),
-  run_estimation = TRUE
+  run_estimation = TRUE,
+  chains = 4,
+  iter = 2000,
+  seed = 42,
+  adapt_delta = 0.85,
+  ...
 )
 }
 \arguments{
@@ -38,6 +43,18 @@ est_naloxone_vec(
 
 \item{run_estimation}{if \code{TRUE} will sample from posterior otherwise will
 sample from prior only}
+
+\item{chains}{A positive integer specifying the number of Markov chains.
+The default is 4.}
+
+\item{iter}{A positive integer specifying the number of iterations
+for each chain (including warmup). The default is 2000.}
+
+\item{seed}{Seed for random number generation}
+
+\item{adapt_delta}{(double, between 0 and 1, defaults to 0.8)}
+
+\item{...}{other parameters to pass to \link[rstan:stanmodel-method-sampling]{rstan::sampling}}
 }
 \description{
 Samples from Bayesian model

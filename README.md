@@ -43,13 +43,34 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(bennu)
-#> Warning: replacing previous import 'lifecycle::last_warnings' by
-#> 'rlang::last_warnings' when loading 'tibble'
-#> Warning: replacing previous import 'lifecycle::last_warnings' by
-#> 'rlang::last_warnings' when loading 'pillar'
+library(rstan)
+#> Loading required package: StanHeaders
+#> Loading required package: ggplot2
+#> rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
+#> For execution on a local, multicore CPU with excess RAM we recommend calling
+#> options(mc.cores = parallel::detectCores()).
+#> To avoid recompilation of unchanged Stan programs, we recommend calling
+#> rstan_options(auto_write = TRUE)
+#> Do not specify '-march=native' in 'LOCAL_CPPFLAGS' or a Makevars file
+library(bayesplot)
+#> This is bayesplot version 1.8.1
+#> - Online documentation and vignettes at mc-stan.org/bayesplot
+#> - bayesplot theme set to bayesplot::theme_default()
+#>    * Does _not_ affect other ggplot2 plots
+#>    * See ?bayesplot_theme_set for details on theme setting
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores(logical = FALSE))
+
 ## basic example code
 d <- generate_model_data()
+# note iter should be at least 2000 to generate a reasonable posterior sample
+fit <- est_naloxone(d,iter=500)
+mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
+           off_diag_args = list(size = 1, alpha = 0.5))
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
 
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:

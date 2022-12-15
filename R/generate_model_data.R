@@ -4,6 +4,7 @@
 #' @param region_coeffs vector of coefficients for regions determining kit orders
 #' @param c_region logit probability of kit use per region
 #' @export
+#' @importFrom stats rbinom rnorm
 generate_model_data <- function(N_t = 24,
                                 region_coeffs = c(5, 0.5),
                                 c_region = c(-1, 2)) {
@@ -18,14 +19,14 @@ generate_model_data <- function(N_t = 24,
   # create empty arrays for regions and times
   regions <- Orders
   times <- Orders
-  HSDA_name <- Orders
+  region_name <- Orders
 
 
   for (i in 1:N_region) {
     Orders[i, ] <- floor(region_coeffs[i] * (1:N_t)^2)
     regions[i, ] <- i
     times[i, ] <- 1:N_t
-    HSDA_name[i, ] <- i
+    region_name[i, ] <- i
   }
 
   Orders2D <- Orders
@@ -34,7 +35,7 @@ generate_model_data <- function(N_t = 24,
   Orders <- as.vector(t(Orders))
   regions <- as.vector(t(regions))
   times <- as.vector(t(times))
-  HSDA_name <- as.vector(t(HSDA_name)) # Add in so code works for real data with names
+  region_name <- as.vector(t(region_name)) # Add in so code works for real data with names
 
   # probability of use
   c_time <- 0.1 * (1:N_t)
@@ -45,10 +46,10 @@ generate_model_data <- function(N_t = 24,
   logp_reported <- rnorm(N_region * N_t, 2, 5)
   p_reported <- 1 / (1 + exp(-logp_reported))
 
-  # vector (time, HSDA) reported as distributed
+  # vector (time, region) reported as distributed
   Reported_Distributed <- rbinom(N_region * N_t, Orders, p_reported)
 
-  # vector (time, HSDA) reported as used
+  # vector (time, region) reported as used
   Reported_Used <- rbinom(N_region * N_t, Reported_Distributed, p_use)
 
   example_data <- tidyr::tibble(
@@ -56,7 +57,7 @@ generate_model_data <- function(N_t = 24,
     Reported_Used = Reported_Used,
     Reported_Distributed = Reported_Distributed,
     p_use = p_use, p_reported = p_reported,
-    times = times, HSDA_name = HSDA_name,
+    times = times, region_name = region_name,
   )
 
   return(example_data)
