@@ -29,5 +29,4 @@ jobs:
       - name: Test coverage
         run: |
           R CMD INSTALL .
-          source shim_package.sh
           Rscript -e 'covr::codecov()'
