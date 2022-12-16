@@ -1,5 +1,5 @@
 Package: bennu
-Title: What the Package Does (One Line, Title Case)
+Title: Bayesian Estimation of Naloxone kit Number Under-reporting.
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Mike",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "mike.irvine@bccdc.ca",
            comment = c(ORCID = "0000-0003-4785-8998"))
-Description: Bayesian estimation of Naloxone kit number under-reporting.
+Description: An R package for generating estimates of total naloxone kit numbers distributed and used from naloxone kit orders data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
