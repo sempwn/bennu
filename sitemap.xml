@@ -22,9 +22,15 @@
     <loc>https://sempwn.github.io/bennu/reference/est_naloxone.html</loc>
   </url>
   <url>
+    <loc>https://sempwn.github.io/bennu/reference/est_naloxone_vec.html</loc>
+  </url>
+  <url>
     <loc>https://sempwn.github.io/bennu/reference/generate_model_data.html</loc>
   </url>
   <url>
     <loc>https://sempwn.github.io/bennu/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://sempwn.github.io/bennu/reference/pipe.html</loc>
   </url>
 </urlset>
