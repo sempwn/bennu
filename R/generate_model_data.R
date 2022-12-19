@@ -5,6 +5,7 @@
 #' @param c_region logit probability of kit use per region
 #' @export
 #' @importFrom stats rbinom rnorm
+#' @family data generation
 generate_model_data <- function(N_t = 24,
                                 region_coeffs = c(5, 0.5),
                                 c_region = c(-1, 2)) {

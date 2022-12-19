@@ -58,3 +58,8 @@ fit <- est_naloxone(d,iter=100,chains=1)
 mcmc_pairs(fit, pars = c("sigma","mu0"),
            off_diag_args = list(size = 1, alpha = 0.5))
 }
+\seealso{
+Other inference: 
+\code{\link{est_naloxone_vec}()}
+}
+\concept{inference}
