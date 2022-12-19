@@ -21,6 +21,7 @@
 #' @param seed Seed for random number generation
 #' @param adapt_delta (double, between 0 and 1, defaults to 0.8)
 #' @param ... other parameters to pass to [rstan::sampling]
+#' @family inference
 #' @export
 est_naloxone_vec <- function(N_region, N_t, regions,
                          times, Orders2D, Reported_Distributed,
@@ -124,6 +125,7 @@ est_naloxone_vec <- function(N_region, N_t, regions,
 #' mcmc_pairs(fit, pars = c("sigma","mu0"),
 #'            off_diag_args = list(size = 1, alpha = 0.5))
 #' @inheritParams est_naloxone_vec
+#' @family inference
 #' @export
 est_naloxone <- function(d,
                          psi_vec = c(0.7, 0.2, 0.1),

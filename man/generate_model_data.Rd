@@ -16,3 +16,4 @@ generate_model_data(N_t = 24, region_coeffs = c(5, 0.5), c_region = c(-1, 2))
 \description{
 generate model data for testing purposes
 }
+\concept{data generation}

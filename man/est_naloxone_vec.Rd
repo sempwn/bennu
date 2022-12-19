@@ -59,3 +59,8 @@ for each chain (including warmup). The default is 2000.}
 \description{
 Samples from Bayesian model
 }
+\seealso{
+Other inference: 
+\code{\link{est_naloxone}()}
+}
+\concept{inference}
