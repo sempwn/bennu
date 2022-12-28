@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r run example model}
 library(rstan)
+library(bennu)
 library(bayesplot)
 
 rstan_options(auto_write = TRUE)
@@ -64,4 +65,38 @@ Summarize random walk order 2 model draws
 
 ```{r rw order 2 summary draws}
 summarise_draws(rw2_fit, default_convergence_measures())
+```
+
+
+
+```{r plot draws}
+library(ggplot2)
+library(dplyr)
+library(tidybayes)
+
+p_dat <-  fit %>% 
+  # first get unreported used by index i
+  tidybayes::spread_draws(p[i]) %>%
+  # now join with regions and times data
+  dplyr::left_join(
+    dplyr::mutate(d,i = dplyr::row_number()),
+    by="i"
+  ) %>%
+  dplyr::group_by(region_name,times) %>%
+  dplyr::summarise(
+    p50 = stats::quantile(p,0.5),
+    p25 = stats::quantile(p,0.25),
+    p75 = stats::quantile(p,0.75),
+    p05 = stats::quantile(p,0.05),
+    p95 = stats::quantile(p,0.95))
+  
+  p_use_plot <- p_dat %>% ggplot2::ggplot(ggplot2::aes(x=times)) +
+      ggplot2::geom_ribbon(
+        ggplot2::aes(ymin=p05,ymax=p95,fill=region_name),alpha=0.2) +
+      ggplot2::geom_ribbon(
+        ggplot2::aes(ymin=p25,ymax=p75,fill=region_name),alpha=0.2) +
+      ggplot2::geom_line(
+        ggplot2::aes(y=p50,color=region_name))
+  
+  show(p_use_plot)
 ```
