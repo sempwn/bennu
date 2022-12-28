@@ -15,6 +15,7 @@ est_naloxone_vec(
   region_name,
   psi_vec = c(0.7, 0.2, 0.1),
   run_estimation = TRUE,
+  rw_type = 1,
   chains = 4,
   iter = 2000,
   seed = 42,
@@ -43,6 +44,8 @@ est_naloxone_vec(
 
 \item{run_estimation}{if \code{TRUE} will sample from posterior otherwise will
 sample from prior only}
+
+\item{rw_type}{\code{1} - random walk of order one. \code{2} - random walk of order 2.}
 
 \item{chains}{A positive integer specifying the number of Markov chains.
 The default is 4.}

@@ -41,7 +41,11 @@ SystemRequirements: GNU make
 Suggests: 
     bayesplot,
     covr,
+    knitr,
+    posterior,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://sempwn.github.io/bennu/
 BugReports: https://github.com/sempwn/bennu/issues
+VignetteBuilder: knitr

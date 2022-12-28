@@ -61,6 +61,9 @@ data {
   // a switch to evaluate the likelihood
   int<lower=0,upper=1> run_estimation;
 
+  // choose which form of a random walk to use (order 1 or order 2)
+  int<lower=1,upper=2> rw_type;
+
   // number of regions
   int<lower=0> N_region;
 
@@ -166,8 +169,15 @@ model {
   ct[1] ~ normal(0,1);
   zeta ~ normal(0,1); // random walk variance
 
-  for(i in 2:N_t){
-    ct[i] ~ normal(ct[i-1],zeta);
+  if(rw_type == 1){
+    for(i in 2:N_t){
+      ct[i] ~ normal(ct[i-1],zeta);
+    }
+  }else{
+    // RW of order 2
+    for(i in 1:(N_t-2)){
+      ct[i] - 2*ct[i+1] + ct[i+2] ~ normal(0,zeta);
+    }
   }
 
   // set priors
