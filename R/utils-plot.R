@@ -33,7 +33,7 @@ plot_kit_use <- function(..., data = NULL) {
     )
 
   p_use_plot <- combined_plot_data %>%
-    mutate(region_name = as.factor(region_name)) %>%
+    dplyr::mutate(region_name = as.factor(region_name)) %>%
     ggplot2::ggplot(ggplot2::aes(x = times)) +
     ggplot2::geom_line(
       ggplot2::aes(y = p50, color = region_name)
