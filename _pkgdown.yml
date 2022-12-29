@@ -1,2 +1,8 @@
 url: https://sempwn.github.io/bennu/
 
+reference:
+- title: Plot Functions
+  contents:
+  - starts_with("plot_")
+
+

@@ -25,7 +25,7 @@ options(mc.cores = parallel::detectCores(logical = FALSE))
 ## basic example code
 d <- generate_model_data()
 # note iter should be at least 2000 to generate a reasonable posterior sample
-fit <- est_naloxone(d,iter=500)
+fit <- est_naloxone(d,iter=1000)
 mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
@@ -37,6 +37,37 @@ library(posterior)
 
 summarise_draws(fit, default_summary_measures())
 ```
+
+We can compare two different model fits of the probability of prior kit use
+to simulated data using the `plot_kit_use` function
+
+```{r plot draws}
+plot_kit_use(model = fit,data=d)
+```
+
+We can compare the posterior predictive check to the prior predictive check
+by re-running the model without the likelihood by setting the `run_estimation`
+parameter to `FALSE`
+
+```{r run prior}
+# note iter should be at least 2000 to generate a reasonable posterior sample
+prior_fit <- est_naloxone(d,
+                          run_estimation = FALSE,
+                          iter=500)
+mcmc_pairs(prior_fit, pars = c("sigma","mu0","zeta"),
+           off_diag_args = list(size = 1, alpha = 0.5))
+```
+
+
+We can compare the prior and posterior predictive distribution of the 
+probability of prior kit use using the `plot_kit_use` function
+
+```{r plot compare prior posterior}
+plot_kit_use(prior = prior_fit,posterior = fit, data=d)
+```
+
+
+## Random walk of order 2 model
 
 The second model uses a random walk of order 1 to characterize the time-dependence
 structure of the inverse logit probability of naloxone use,
@@ -56,7 +87,7 @@ naloxone use in time.
 rw2_fit <- est_naloxone(d,
                     rw_type = 2,
                     iter=500)
-mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
+mcmc_pairs(rw2_fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
 
@@ -67,51 +98,10 @@ Summarize random walk order 2 model draws
 summarise_draws(rw2_fit, default_convergence_measures())
 ```
 
+We can compare two different model fits of the probability of prior kit use
+to simulated data using the `plot_kit_use` function
 
-
-```{r plot draws}
-library(ggplot2)
-library(dplyr)
-library(tidybayes)
-
-rw1_p <- fit %>% 
-  tidybayes::spread_draws(p[i]) %>% 
-  mutate(model = "RW 1") %>% 
-  dplyr::left_join(
-    dplyr::mutate(d,i = dplyr::row_number()),
-    by="i"
-  ) 
-
-rw2_p <- rw2_fit %>% 
-  tidybayes::spread_draws(p[i]) %>% 
-  mutate(model = "RW 2") %>% 
-  dplyr::left_join(
-    dplyr::mutate(d,i = dplyr::row_number()),
-    by="i"
-  ) 
-region <- model <- times <- NULL
-
-p_dat <-  rw1_p %>% 
-  bind_rows(rw2_p) %>% 
-  dplyr::group_by(region_name,model, times) %>%
-  dplyr::summarise(
-    p50 = stats::quantile(p,0.5),
-    p25 = stats::quantile(p,0.25),
-    p75 = stats::quantile(p,0.75),
-    p05 = stats::quantile(p,0.05),
-    p95 = stats::quantile(p,0.95),
-    p_use = mean(p_use))
-  
-  p_use_plot <- p_dat %>% 
-    mutate(region_name = as.factor(region_name)) %>% 
-    ggplot2::ggplot(ggplot2::aes(x=times)) +
-    ggplot2::geom_line(
-        ggplot2::aes(y=p50,color=region_name)) + ggplot2::geom_ribbon(
-            ggplot2::aes(ymin=p05,ymax=p95,fill=region_name),alpha=0.2) + 
-    ggplot2::geom_ribbon(
-        ggplot2::aes(ymin=p25,ymax=p75,fill=region_name),alpha=0.2) +
-    ggplot2::geom_point(ggplot2::aes(y=p_use,color=region_name)) +
-    facet_wrap(ggplot2::vars(model))
-  
-  p_use_plot
+```{r plot draws comparison}
+plot_kit_use(rw_1 = fit,rw_2 = rw2_fit,data=d)
 ```
+

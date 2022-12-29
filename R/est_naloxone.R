@@ -169,7 +169,12 @@ est_naloxone <- function(d,
     region_name,
     psi_vec = psi_vec,
     run_estimation = run_estimation,
-    rw_type = rw_type
+    rw_type = rw_type,
+    chains = chains,
+    iter = iter,
+    seed = seed,
+    adapt_delta = adapt_delta,
+    ...
   )
 
   return(obj)
