@@ -74,29 +74,44 @@ library(ggplot2)
 library(dplyr)
 library(tidybayes)
 
-p_dat <-  fit %>% 
-  # first get unreported used by index i
-  tidybayes::spread_draws(p[i]) %>%
-  # now join with regions and times data
+rw1_p <- fit %>% 
+  tidybayes::spread_draws(p[i]) %>% 
+  mutate(model = "RW 1") %>% 
   dplyr::left_join(
     dplyr::mutate(d,i = dplyr::row_number()),
     by="i"
-  ) %>%
-  dplyr::group_by(region_name,times) %>%
+  ) 
+
+rw2_p <- rw2_fit %>% 
+  tidybayes::spread_draws(p[i]) %>% 
+  mutate(model = "RW 2") %>% 
+  dplyr::left_join(
+    dplyr::mutate(d,i = dplyr::row_number()),
+    by="i"
+  ) 
+region <- model <- times <- NULL
+
+p_dat <-  rw1_p %>% 
+  bind_rows(rw2_p) %>% 
+  dplyr::group_by(region_name,model, times) %>%
   dplyr::summarise(
     p50 = stats::quantile(p,0.5),
     p25 = stats::quantile(p,0.25),
     p75 = stats::quantile(p,0.75),
     p05 = stats::quantile(p,0.05),
-    p95 = stats::quantile(p,0.95))
+    p95 = stats::quantile(p,0.95),
+    p_use = mean(p_use))
   
-  p_use_plot <- p_dat %>% ggplot2::ggplot(ggplot2::aes(x=times)) +
-      ggplot2::geom_ribbon(
-        ggplot2::aes(ymin=p05,ymax=p95,fill=region_name),alpha=0.2) +
-      ggplot2::geom_ribbon(
+  p_use_plot <- p_dat %>% 
+    mutate(region_name = as.factor(region_name)) %>% 
+    ggplot2::ggplot(ggplot2::aes(x=times)) +
+    ggplot2::geom_line(
+        ggplot2::aes(y=p50,color=region_name)) + ggplot2::geom_ribbon(
+            ggplot2::aes(ymin=p05,ymax=p95,fill=region_name),alpha=0.2) + 
+    ggplot2::geom_ribbon(
         ggplot2::aes(ymin=p25,ymax=p75,fill=region_name),alpha=0.2) +
-      ggplot2::geom_line(
-        ggplot2::aes(y=p50,color=region_name))
+    ggplot2::geom_point(ggplot2::aes(y=p_use,color=region_name)) +
+    facet_wrap(ggplot2::vars(model))
   
-  show(p_use_plot)
+  p_use_plot
 ```
