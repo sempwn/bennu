@@ -1,6 +1,15 @@
 url: https://sempwn.github.io/bennu/
 
 reference:
+- title: Package
+  contents:
+  - starts_with("bennu")
+- title: Data Generation
+  contents:
+  - has_concept("data generation")
+- title: Inference
+  contents:
+  - has_concept("inference")
 - title: Plot Functions
   contents:
   - starts_with("plot_")
