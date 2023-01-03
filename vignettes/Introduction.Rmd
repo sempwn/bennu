@@ -1,0 +1,107 @@
+---
+title: "Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r run example model}
+library(rstan)
+library(bennu)
+library(bayesplot)
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores(logical = FALSE))
+
+## basic example code
+d <- generate_model_data()
+# note iter should be at least 2000 to generate a reasonable posterior sample
+fit <- est_naloxone(d,iter=1000)
+mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
+           off_diag_args = list(size = 1, alpha = 0.5))
+```
+
+Return median and 90th percentiles for posterior samples
+
+```{r summarize draws}
+library(posterior)
+
+summarise_draws(fit, default_summary_measures())
+```
+
+We can compare two different model fits of the probability of prior kit use
+to simulated data using the `plot_kit_use` function
+
+```{r plot draws}
+plot_kit_use(model = fit,data=d)
+```
+
+We can compare the posterior predictive check to the prior predictive check
+by re-running the model without the likelihood by setting the `run_estimation`
+parameter to `FALSE`
+
+```{r run prior}
+# note iter should be at least 2000 to generate a reasonable posterior sample
+prior_fit <- est_naloxone(d,
+                          run_estimation = FALSE,
+                          iter=1000)
+mcmc_pairs(prior_fit, pars = c("sigma","mu0","zeta"),
+           off_diag_args = list(size = 1, alpha = 0.5))
+```
+
+
+We can compare the prior and posterior predictive distribution of the 
+probability of prior kit use using the `plot_kit_use` function
+
+```{r plot compare prior posterior}
+plot_kit_use(prior = prior_fit,posterior = fit, data=d)
+```
+
+
+## Random walk of order 2 model
+
+The second model uses a random walk of order 1 to characterize the time-dependence
+structure of the inverse logit probability of naloxone use,
+
+$$\Delta^2c_i = c_i - c_{i+1} \sim N(0,\tau^{-1})  $$
+
+The model can also be fit using a random walk of order 2 increments for the inverse logit probability of naloxone use using the following independent second order increments,
+
+$$\Delta^2c_i = c_i - 2c_{i+1} + c_{i+2} \sim N(0,\tau^{-1}) $$
+
+This version of the model will produce smoother estimates of probability of
+naloxone use in time.
+
+```{r rw order 2 model}
+# note iter should be at least 2000 to generate a reasonable posterior sample
+# note use `rw_type` to specify order of random walk
+rw2_fit <- est_naloxone(d,
+                    rw_type = 2,
+                    iter=1000)
+mcmc_pairs(rw2_fit, pars = c("sigma","mu0","zeta"),
+           off_diag_args = list(size = 1, alpha = 0.5))
+```
+
+
+Summarize random walk order 2 model draws
+
+```{r rw order 2 summary draws}
+summarise_draws(rw2_fit, default_convergence_measures())
+```
+
+We can compare two different model fits of the probability of prior kit use
+to simulated data using the `plot_kit_use` function
+
+```{r plot draws comparison}
+plot_kit_use(rw_1 = fit,rw_2 = rw2_fit,data=d)
+```
+

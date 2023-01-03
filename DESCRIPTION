@@ -23,12 +23,15 @@ Depends:
     R (>= 3.4.0)
 Imports: 
     dplyr,
+    ggplot2,
     magrittr,
     methods,
     Rcpp (>= 0.12.0),
     RcppParallel (>= 5.0.1),
     rstan (>= 2.18.1),
     rstantools (>= 2.2.0),
+    scales,
+    tidybayes,
     tidyr
 LinkingTo: 
     BH (>= 1.66.0),
@@ -41,7 +44,11 @@ SystemRequirements: GNU make
 Suggests: 
     bayesplot,
     covr,
+    knitr,
+    posterior,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://sempwn.github.io/bennu/
 BugReports: https://github.com/sempwn/bennu/issues
+VignetteBuilder: knitr

@@ -14,6 +14,7 @@
 #' @param psi_vec reporting delay distribution
 #' @param run_estimation if `TRUE` will sample from posterior otherwise will
 #' sample from prior only
+#' @param rw_type `1` - random walk of order one. `2` - random walk of order 2.
 #' @param chains A positive integer specifying the number of Markov chains.
 #' The default is 4.
 #' @param iter A positive integer specifying the number of iterations
@@ -24,23 +25,25 @@
 #' @family inference
 #' @export
 est_naloxone_vec <- function(N_region, N_t, regions,
-                         times, Orders2D, Reported_Distributed,
-                         Reported_Used,
-                         region_name,
-                         psi_vec = c(0.7, 0.2, 0.1),
-                         run_estimation = TRUE,
-                         chains=4,
-                         iter=2000,
-                         seed=42,
-                         adapt_delta = 0.85,
-                         ...
-                         ) {
+                             times, Orders2D, Reported_Distributed,
+                             Reported_Used,
+                             region_name,
+                             psi_vec = c(0.7, 0.2, 0.1),
+                             run_estimation = TRUE,
+                             rw_type = 1,
+                             chains = 4,
+                             iter = 2000,
+                             seed = 42,
+                             adapt_delta = 0.85,
+                             ...) {
   Orders <- as.vector(t(Orders2D))
 
   stan_data <-
     list(
       # // a switch to evaluate the likelihood
       run_estimation = as.numeric(run_estimation),
+      # // choose which form of a random walk to use (order 1 or order 2)
+      rw_type = rw_type,
       #
       # // number of regions
       N_region = N_region,
@@ -121,26 +124,28 @@ est_naloxone_vec <- function(N_region, N_t, regions,
 #' options(mc.cores = parallel::detectCores(logical = FALSE))
 #'
 #' d <- generate_model_data()
-#' fit <- est_naloxone(d,iter=100,chains=1)
-#' mcmc_pairs(fit, pars = c("sigma","mu0"),
-#'            off_diag_args = list(size = 1, alpha = 0.5))
+#' fit <- est_naloxone(d, iter = 100, chains = 1)
+#' mcmc_pairs(fit,
+#'   pars = c("sigma", "mu0"),
+#'   off_diag_args = list(size = 1, alpha = 0.5)
+#' )
 #' @inheritParams est_naloxone_vec
 #' @family inference
 #' @export
 est_naloxone <- function(d,
                          psi_vec = c(0.7, 0.2, 0.1),
                          run_estimation = TRUE,
-                         chains=4,
-                         iter=2000,
-                         seed=42,
+                         rw_type = 1,
+                         chains = 4,
+                         iter = 2000,
+                         seed = 42,
                          adapt_delta = 0.85,
-                         ...){
-
+                         ...) {
   Orders <- NULL
 
   # checks for data
   d <- d %>%
-    dplyr::arrange(regions,times)
+    dplyr::arrange(regions, times)
 
   N_region <- length(unique(d[["regions"]]))
   N_t <- length(unique(d[["times"]]))
@@ -150,21 +155,27 @@ est_naloxone <- function(d,
   Reported_Distributed <- d[["Reported_Distributed"]]
   Reported_Used <- d[["Reported_Used"]]
 
-  region_name_label <- intersect(c("region_name","regions"),names(d))[1]
+  region_name_label <- intersect(c("region_name", "regions"), names(d))[1]
   region_name <- d[[region_name_label]]
 
   Orders2D <- d %>%
-    tidyr::pivot_wider(regions,names_from = times,values_from = Orders) %>%
+    tidyr::pivot_wider(regions, names_from = times, values_from = Orders) %>%
     dplyr::select(-regions) %>%
     as.matrix()
 
   obj <- est_naloxone_vec(N_region, N_t, regions,
-                               times, Orders2D, Reported_Distributed,
-                               Reported_Used,
-                               region_name,
-                               psi_vec = psi_vec,
-                               run_estimation = run_estimation)
+    times, Orders2D, Reported_Distributed,
+    Reported_Used,
+    region_name,
+    psi_vec = psi_vec,
+    run_estimation = run_estimation,
+    rw_type = rw_type,
+    chains = chains,
+    iter = iter,
+    seed = seed,
+    adapt_delta = adapt_delta,
+    ...
+  )
 
   return(obj)
 }
-
