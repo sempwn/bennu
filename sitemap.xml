@@ -10,6 +10,12 @@
     <loc>https://sempwn.github.io/bennu/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://sempwn.github.io/bennu/articles/Introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://sempwn.github.io/bennu/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://sempwn.github.io/bennu/authors.html</loc>
   </url>
   <url>
@@ -32,5 +38,8 @@
   </url>
   <url>
     <loc>https://sempwn.github.io/bennu/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://sempwn.github.io/bennu/reference/plot_kit_use.html</loc>
   </url>
 </urlset>
