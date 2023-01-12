@@ -14,6 +14,17 @@ generate_model_data(N_t = 24, region_coeffs = c(5, 0.5), c_region = c(-1, 2))
 \item{c_region}{logit probability of kit use per region}
 }
 \description{
-generate model data for testing purposes
+Simulate kits ordered and kits distributed for a set number of regions and
+time-points.
+
+The kits ordered simulation is a simple square-term multiplied by \code{region_coeffs}.
+For example if \code{region_coeffs = c(1,2)} then the number of kits ordered at
+month 12 are \code{c(1,2) * 12^2 = c(144,288)}.
+
+The probability of kit use in time is assumed to increase linearly in inverse
+logit space at a constant rate \code{0.1}.
+The probability of reporting for each month and region is iid distributed
+\eqn{\text{logit}^{-1}(p) \sim N(2,5)} which produces a mean reporting rate
+of approximately 88\%
 }
 \concept{data generation}

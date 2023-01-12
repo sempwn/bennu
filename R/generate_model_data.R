@@ -10,6 +10,9 @@
 #'
 #' The probability of kit use in time is assumed to increase linearly in inverse
 #' logit space at a constant rate `0.1`.
+#' The probability of reporting for each month and region is iid distributed
+#' \eqn{\text{logit}^{-1}(p) \sim N(2,5)} which produces a mean reporting rate
+#' of approximately 88%
 #' @param N_t number of time-points
 #' @param region_coeffs vector of coefficients for regions determining kit orders
 #' @param c_region logit probability of kit use per region
