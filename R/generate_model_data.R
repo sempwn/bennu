@@ -1,5 +1,18 @@
 
 #' generate model data for testing purposes
+#' @description
+#' Simulate kits ordered and kits distributed for a set number of regions and
+#' time-points.
+#'
+#' The kits ordered simulation is a simple square-term multiplied by `region_coeffs`.
+#' For example if `region_coeffs = c(1,2)` then the number of kits ordered at
+#' month 12 are `c(1,2) * 12^2 = c(144,288)`.
+#'
+#' The probability of kit use in time is assumed to increase linearly in inverse
+#' logit space at a constant rate `0.1`.
+#' The probability of reporting for each month and region is iid distributed
+#' \eqn{\text{logit}^{-1}(p) \sim N(2,5)} which produces a mean reporting rate
+#' of approximately 88%
 #' @param N_t number of time-points
 #' @param region_coeffs vector of coefficients for regions determining kit orders
 #' @param c_region logit probability of kit use per region
