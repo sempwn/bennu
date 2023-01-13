@@ -70,8 +70,11 @@ data {
   // number of time steps
   int<lower=0> N_t;
 
-  // total number of rows in data
+  // total number of rows in ordered data
   int<lower=0> N;
+
+  // total number of rows in reported distribution data
+  int<lower=0> N_distributed;
 
   // parameters for delay distribution
   real<lower=0> alpha;
@@ -85,10 +88,10 @@ data {
   real<lower=0> psi[N_psi];
 
   // vector (time, HSDA) of regions (coded 1 to N_region)
-  int<lower=1,upper=N_region> regions[N];
+  int<lower=1,upper=N_region> regions[N_distributed];
 
   // vector (time, HSDA) of regions (coded 1 to N_t)
-  int<lower=1,upper=N_t> times[N];
+  int<lower=1,upper=N_t> times[N_distributed];
 
   // vector (time, HSDA) of orders
   int Orders[N];
@@ -97,10 +100,10 @@ data {
   int Orders2D[N_region,N_t];
 
   // vector (time, HSDA) reported as distributed
-  int Reported_Distributed[N];
+  int Reported_Distributed[N_distributed];
 
   // vector (time, HSDA) reported as used
-  int Reported_Used[N];
+  int Reported_Used[N_distributed];
 
   //hyper-priors
   real<lower=0> mu0_sigma;
@@ -152,7 +155,7 @@ parameters {
 
 //transformed parameters
 transformed parameters{
-  real p[N];
+  real p[N_distributed];
 
   p = inv_logit(logp);
 }
