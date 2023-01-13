@@ -4,7 +4,12 @@
 \alias{generate_model_data}
 \title{generate model data for testing purposes}
 \usage{
-generate_model_data(N_t = 24, region_coeffs = c(5, 0.5), c_region = c(-1, 2))
+generate_model_data(
+  N_t = 24,
+  region_coeffs = c(5, 0.5),
+  c_region = c(-1, 2),
+  reporting_freq = NULL
+)
 }
 \arguments{
 \item{N_t}{number of time-points}
@@ -12,6 +17,9 @@ generate_model_data(N_t = 24, region_coeffs = c(5, 0.5), c_region = c(-1, 2))
 \item{region_coeffs}{vector of coefficients for regions determining kit orders}
 
 \item{c_region}{logit probability of kit use per region}
+
+\item{reporting_freq}{The frequency that distribution data is provided.
+If \code{NULL} distribution frequency matches orders frequency}
 }
 \description{
 Simulate kits ordered and kits distributed for a set number of regions and

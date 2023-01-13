@@ -16,14 +16,16 @@
 #' @param N_t number of time-points
 #' @param region_coeffs vector of coefficients for regions determining kit orders
 #' @param c_region logit probability of kit use per region
+#' @param reporting_freq The frequency that distribution data is provided.
+#'  If `NULL` distribution frequency matches orders frequency
 #' @export
 #' @importFrom stats rbinom rnorm
 #' @family data generation
 generate_model_data <- function(N_t = 24,
                                 region_coeffs = c(5, 0.5),
-                                c_region = c(-1, 2)) {
-
-  if(length(region_coeffs) != length(c_region)){
+                                c_region = c(-1, 2),
+                                reporting_freq = NULL) {
+  if (length(region_coeffs) != length(c_region)) {
     stop("Length of region_coeffs should match length of c_region.")
   }
 
@@ -65,6 +67,13 @@ generate_model_data <- function(N_t = 24,
 
   # vector (time, region) reported as used
   Reported_Used <- rbinom(N_region * N_t, Reported_Distributed, p_use)
+
+  # Remove values from reported data according to reporting frequency
+  if(!is.null(reporting_freq)){
+    nonreporting_times <- times %% reporting_freq != 1
+    Reported_Distributed[nonreporting_times] <- NA
+    Reported_Used[nonreporting_times] <- NA
+  }
 
   example_data <- tidyr::tibble(
     Orders = Orders, regions = regions,
