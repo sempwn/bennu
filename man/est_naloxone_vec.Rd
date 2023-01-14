@@ -7,6 +7,7 @@
 est_naloxone_vec(
   N_region,
   N_t,
+  N_distributed,
   regions,
   times,
   Orders2D,
@@ -27,6 +28,8 @@ est_naloxone_vec(
 \item{N_region}{Number of regions}
 
 \item{N_t}{number of time steps}
+
+\item{N_distributed}{Number of samples of reporting for distribution of kits}
 
 \item{regions}{vector (time, region) of regions (coded 1 to N_region)}
 

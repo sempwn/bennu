@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library(rstan)
 library(bennu)
 library(bayesplot)
+library(ggplot2)
 
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores(logical = FALSE))
@@ -104,4 +105,38 @@ to simulated data using the `plot_kit_use` function
 ```{r plot draws comparison}
 plot_kit_use(rw_1 = fit,rw_2 = rw2_fit,data=d)
 ```
+
+
+## fit missing distribution data
+
+As distribution data are reported from sites some months may not be reported.
+This would lead to a difference in the frequency of the orders data and the
+distribution data. The model can account for these differences and infer the 
+distribution during missing months. See the following example for generating
+distribution data once every three months
+
+```{r data generation lower frequency}
+## basic example code
+d_missing <- generate_model_data(reporting_freq = 3)
+ggplot(aes(x=times,y=Reported_Used,color=as.factor(regions)),data=d_missing) +
+  geom_point()
+
+```
+
+
+
+```{r missing data inference}
+missing_fit <- est_naloxone(d_missing,
+                    rw_type = 2,
+                    iter=1000)
+mcmc_pairs(missing_fit, pars = c("sigma","mu0","zeta"),
+           off_diag_args = list(size = 1, alpha = 0.5))
+
+```
+
+
+```{r plot draws with missing data}
+plot_kit_use(model = missing_fit, data=d_missing)
+```
+
 
