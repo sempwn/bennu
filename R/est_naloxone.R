@@ -5,6 +5,7 @@
 #' Samples from Bayesian model
 #' @param N_region Number of regions
 #' @param N_t number of time steps
+#' @param N_distributed Number of samples of reporting for distribution of kits
 #' @param regions vector (time, region) of regions (coded 1 to N_region)
 #' @param times vector (time, region) of regions (coded 1 to N_t)
 #' @param Orders2D vector (time, region) of orders
@@ -24,7 +25,7 @@
 #' @param ... other parameters to pass to [rstan::sampling]
 #' @family inference
 #' @export
-est_naloxone_vec <- function(N_region, N_t, regions,
+est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
                              times, Orders2D, Reported_Distributed,
                              Reported_Used,
                              region_name,
@@ -51,7 +52,8 @@ est_naloxone_vec <- function(N_region, N_t, regions,
       N_t = N_t,
       # // total number of rows in data
       N = N_region * N_t,
-      #
+      # total number of rows in reported distribution data
+      N_distributed = N_distributed,
       # //parameters for delay distribution
       alpha = 2,
       beta = 1,
@@ -155,6 +157,23 @@ est_naloxone <- function(d,
   Reported_Distributed <- d[["Reported_Distributed"]]
   Reported_Used <- d[["Reported_Used"]]
 
+  # check that if missing reporting data then number of distributed and used
+  # non-missing match
+  if (sum(is.na(Reported_Distributed)) != sum(is.na(Reported_Used))) {
+    stop("Number of missing `Reported_Distributed` should match number
+         of missing `Reported_Used")
+  }
+
+  # remove missing values
+  nonmissing_inds <- !is.na(Reported_Used)
+
+  times <- times[nonmissing_inds]
+  regions <- regions[nonmissing_inds]
+  Reported_Distributed <- Reported_Distributed[nonmissing_inds]
+  Reported_Used <- Reported_Used[nonmissing_inds]
+  N_distributed <- length(Reported_Used)
+
+
   region_name_label <- intersect(c("region_name", "regions"), names(d))[1]
   region_name <- d[[region_name_label]]
 
@@ -163,9 +182,10 @@ est_naloxone <- function(d,
     dplyr::select(-regions) %>%
     as.matrix()
 
-  obj <- est_naloxone_vec(N_region, N_t, regions,
-    times, Orders2D, Reported_Distributed,
-    Reported_Used,
+  obj <- est_naloxone_vec(
+    N_region, N_t, N_distributed,
+    regions, times, Orders2D,
+    Reported_Distributed, Reported_Used,
     region_name,
     psi_vec = psi_vec,
     run_estimation = run_estimation,

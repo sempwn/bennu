@@ -141,7 +141,7 @@ transformed data{
 
 // The parameters accepted by the model.
 parameters {
-  real logp[N];
+  real logp[N_distributed];
   real<lower=0> sigma;
   real<lower=0> zeta;
   real mu0;
@@ -196,10 +196,12 @@ model {
 
 // simulated quantities based on model
 generated quantities {
-  int sim_unreported_used[N];
-  vector[N] sim_used;
+  int sim_used[N];
+  //vector[N] sim_used;
   int Distributed[N];
   int Distributed2D[N_region,N_t];
+  real sim_p[N];
+  real sim_p2D[N_region,N_t];
 
   vector[N] sim_actual_used;
 
@@ -217,6 +219,7 @@ generated quantities {
     for (s in 1:N_t) {
           convolve_region_distributed[s] = sum(binomial_rng(region_distributed[max(1, (s - max_delays + 1)):s],
                                        tail(reverse_distribute_pmf, min(max_delays, s))));
+          sim_p2D[i,s] = normal_rng(mu0 + c[i] + ct[s],sigma);
     }
 
     Distributed2D[i,:] = convolve_region_distributed;
@@ -228,13 +231,15 @@ generated quantities {
 
   // flatten in row-major order (important to check this matches Orders)
   Distributed = to_array_1d(Distributed2D);
+  sim_p = inv_logit(to_array_1d(sim_p2D));
 
-  sim_unreported_used = binomial_rng(Distributed,p);
-  sim_used = to_vector(sim_unreported_used) + to_vector(Reported_Used);
+  sim_used = binomial_rng(Distributed,sim_p);
+
+
 
   for(i in 1:N_region){
     sim_actual_used[(1 + (i-1)*N_t):i*N_t] = mdivide_left_tri_low(reporting_delay_matrix,
-    segment(sim_used,1 + (i-1)*N_t,N_t));
+    segment(to_vector(sim_used),1 + (i-1)*N_t,N_t));
   }
 }
 
