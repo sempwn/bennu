@@ -26,7 +26,7 @@ of approximately 88%"><meta property="og:image" content="https://sempwn.github.i
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bennu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -44,6 +44,9 @@ of approximately 88%"><meta property="og:image" content="https://sempwn.github.i
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
   </ul></li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/sempwn/bennu/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -78,7 +81,12 @@ of approximately 88%</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">generate_model_data</span><span class="op">(</span>N_t <span class="op">=</span> <span class="fl">24</span>, region_coeffs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0.5</span><span class="op">)</span>, c_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">generate_model_data</span><span class="op">(</span></span>
+<span>  N_t <span class="op">=</span> <span class="fl">24</span>,</span>
+<span>  region_coeffs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  c_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  reporting_freq <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -93,6 +101,11 @@ of approximately 88%</p>
 
 <dt>c_region</dt>
 <dd><p>logit probability of kit use per region</p></dd>
+
+
+<dt>reporting_freq</dt>
+<dd><p>The frequency that distribution data is provided.
+If <code>NULL</code> distribution frequency matches orders frequency</p></dd>
 
 </dl></div>
 
