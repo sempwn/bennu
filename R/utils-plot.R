@@ -14,7 +14,7 @@
 plot_kit_use <- function(..., data = NULL) {
   combined_plot_data <- combine_model_fits(..., data = data)
 
-  region <- model <- times <- p_use <- NULL
+  region <- model <- times <- sim_p <- p_use <- NULL
 
   # add true values as NULL if doesn't exist in data
   if(!"p_use" %in% names(combined_plot_data)){
@@ -24,11 +24,11 @@ plot_kit_use <- function(..., data = NULL) {
   combined_plot_data <- combined_plot_data %>%
     dplyr::group_by(region_name, model, times) %>%
     dplyr::summarise(
-      p50 = stats::quantile(p, 0.5),
-      p25 = stats::quantile(p, 0.25),
-      p75 = stats::quantile(p, 0.75),
-      p05 = stats::quantile(p, 0.05),
-      p95 = stats::quantile(p, 0.95),
+      p50 = stats::quantile(sim_p, 0.5),
+      p25 = stats::quantile(sim_p, 0.25),
+      p75 = stats::quantile(sim_p, 0.75),
+      p05 = stats::quantile(sim_p, 0.05),
+      p95 = stats::quantile(sim_p, 0.95),
       p_use = mean(p_use)
     )
 
@@ -73,7 +73,7 @@ combine_model_fits <- function(..., data = NULL) {
   comparison_tibble <- dplyr::tibble()
   for (model in names(fit_list)) {
     out <- fit_list[[model]] %>%
-      tidybayes::spread_draws(p[i]) %>%
+      tidybayes::spread_draws(sim_p[i]) %>%
       dplyr::mutate(model = model) %>%
       dplyr::left_join(
         dplyr::mutate(data, i = dplyr::row_number()),

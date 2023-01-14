@@ -161,7 +161,7 @@ est_naloxone <- function(d,
   # non-missing match
   if (sum(is.na(Reported_Distributed)) != sum(is.na(Reported_Used))) {
     stop("Number of missing `Reported_Distributed` should match number
-         of missing `Reported_Used")
+         of missing `Reported_Used`")
   }
 
   # remove missing values
