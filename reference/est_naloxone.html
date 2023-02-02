@@ -66,6 +66,9 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">est_naloxone</span><span class="op">(</span></span>
 <span>  <span class="va">d</span>,</span>
 <span>  psi_vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span>,</span>
+<span>  max_delays <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  delay_alpha <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  delay_beta <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  run_estimation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  rw_type <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  chains <span class="op">=</span> <span class="fl">4</span>,</span>
@@ -103,6 +106,19 @@
 
 <dt>psi_vec</dt>
 <dd><p>reporting delay distribution</p></dd>
+
+
+<dt>max_delays</dt>
+<dd><p>maximum delay from kit ordered to kit distributed</p></dd>
+
+
+<dt>delay_alpha</dt>
+<dd><p>shape parameter for order to distributed delay
+distribution</p></dd>
+
+
+<dt>delay_beta</dt>
+<dd><p>shape parameter for order to distributed delay distribution</p></dd>
 
 
 <dt>run_estimation</dt>
@@ -147,7 +163,7 @@ for each chain (including warmup). The default is 2000.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan/" class="external-link">rstan</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: StanHeaders</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ggplot2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> rstan (Version 2.21.7, GitRev: 2e1f913d3ca3)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> rstan (Version 2.21.8, GitRev: 2e1f913d3ca3)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> For execution on a local, multicore CPU with excess RAM we recommend calling</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> options(mc.cores = parallel::detectCores()).</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> To avoid recompilation of unchanged Stan programs, we recommend calling</span>
@@ -164,11 +180,15 @@ for each chain (including warmup). The default is 2000.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="generate_model_data.html">generate_model_data</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">est_naloxone</span><span class="op">(</span><span class="va">d</span>, iter <span class="op">=</span> <span class="fl">100</span>, chains <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please explicitly name `id_cols`, like `id_cols = regions`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">bennu</span> package.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/sempwn/bennu/issues&gt;</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SAMPLING FOR MODEL 'distribution_covariate_model' NOW (CHAIN 1).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Gradient evaluation took 3.3e-05 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.33 seconds.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Gradient evaluation took 4e-05 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.4 seconds.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Adjust your expectations accordingly!</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
@@ -193,11 +213,11 @@ for each chain (including warmup). The default is 2000.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Iteration: 90 / 100 [ 90%]  (Sampling)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Iteration: 100 / 100 [100%]  (Sampling)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:  Elapsed Time: 0.227527 seconds (Warm-up)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                0.00975 seconds (Sampling)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                0.237277 seconds (Total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:  Elapsed Time: 0.123358 seconds (Warm-up)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                0.102148 seconds (Sampling)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                0.225506 seconds (Total)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There were 49 divergent transitions after warmup. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There were 13 divergent transitions after warmup. See</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> to find out why this is a problem and how to eliminate them.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Examine the pairs() plot to diagnose sampling problems</span>

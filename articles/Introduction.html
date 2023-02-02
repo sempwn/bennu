@@ -99,7 +99,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan/" class="external-link">rstan</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: StanHeaders</span></span>
 <span><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span><span class="co">#&gt; rstan (Version 2.21.7, GitRev: 2e1f913d3ca3)</span></span>
+<span><span class="co">#&gt; rstan (Version 2.21.8, GitRev: 2e1f913d3ca3)</span></span>
 <span><span class="co">#&gt; For execution on a local, multicore CPU with excess RAM we recommend calling</span></span>
 <span><span class="co">#&gt; options(mc.cores = parallel::detectCores()).</span></span>
 <span><span class="co">#&gt; To avoid recompilation of unchanged Stan programs, we recommend calling</span></span>
@@ -120,12 +120,16 @@
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_model_data.html">generate_model_data</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># note iter should be at least 2000 to generate a reasonable posterior sample</span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,iter<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 417 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please explicitly name `id_cols`, like `id_cols = regions`.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">bennu</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/sempwn/bennu/issues&gt;</span>.</span></span>
+<span><span class="co">#&gt; Warning: There were 158 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 479 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; Warning: There were 418 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
-<span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
+<span><span class="co">#&gt; Warning: There were 3 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
@@ -158,18 +162,18 @@
 <span></span>
 <span><span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">summarise_draws</a></span><span class="op">(</span><span class="va">fit</span>, <span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">default_summary_measures</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 462 × 7</span></span></span>
-<span><span class="co">#&gt;    variable   mean median     sd    mad    q5    q95</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]  -<span style="color: #BB0000;">1.42</span>  -<span style="color: #BB0000;">1.44</span>  0.271  0.234  -<span style="color: #BB0000;">1.86</span> -<span style="color: #BB0000;">0.956</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]  -<span style="color: #BB0000;">1.40</span>  -<span style="color: #BB0000;">1.37</span>  0.237  0.227  -<span style="color: #BB0000;">1.81</span> -<span style="color: #BB0000;">1.05</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]  -<span style="color: #BB0000;">1.45</span>  -<span style="color: #BB0000;">1.43</span>  0.194  0.177  -<span style="color: #BB0000;">1.79</span> -<span style="color: #BB0000;">1.15</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]  -<span style="color: #BB0000;">1.33</span>  -<span style="color: #BB0000;">1.31</span>  0.151  0.134  -<span style="color: #BB0000;">1.59</span> -<span style="color: #BB0000;">1.10</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]  -<span style="color: #BB0000;">1.32</span>  -<span style="color: #BB0000;">1.33</span>  0.136  0.159  -<span style="color: #BB0000;">1.51</span> -<span style="color: #BB0000;">1.10</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]  -<span style="color: #BB0000;">1.30</span>  -<span style="color: #BB0000;">1.30</span>  0.137  0.145  -<span style="color: #BB0000;">1.53</span> -<span style="color: #BB0000;">1.11</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]  -<span style="color: #BB0000;">1.25</span>  -<span style="color: #BB0000;">1.24</span>  0.156  0.158  -<span style="color: #BB0000;">1.53</span> -<span style="color: #BB0000;">1.03</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]  -<span style="color: #BB0000;">1.13</span>  -<span style="color: #BB0000;">1.11</span>  0.132  0.121  -<span style="color: #BB0000;">1.35</span> -<span style="color: #BB0000;">0.925</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]  -<span style="color: #BB0000;">1.05</span>  -<span style="color: #BB0000;">1.04</span>  0.110  0.123  -<span style="color: #BB0000;">1.24</span> -<span style="color: #BB0000;">0.896</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10] -<span style="color: #BB0000;">0.978</span> -<span style="color: #BB0000;">0.975</span> 0.082<span style="text-decoration: underline;">7</span> 0.099<span style="text-decoration: underline;">3</span> -<span style="color: #BB0000;">1.11</span> -<span style="color: #BB0000;">0.862</span></span></span>
+<span><span class="co">#&gt;    variable   mean median    sd   mad    q5    q95</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]  -<span style="color: #BB0000;">1.48</span>  -<span style="color: #BB0000;">1.48</span>  0.299 0.293 -<span style="color: #BB0000;">1.96</span> -<span style="color: #BB0000;">0.997</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]  -<span style="color: #BB0000;">1.46</span>  -<span style="color: #BB0000;">1.45</span>  0.252 0.237 -<span style="color: #BB0000;">1.88</span> -<span style="color: #BB0000;">1.06</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]  -<span style="color: #BB0000;">1.51</span>  -<span style="color: #BB0000;">1.50</span>  0.210 0.209 -<span style="color: #BB0000;">1.86</span> -<span style="color: #BB0000;">1.18</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]  -<span style="color: #BB0000;">1.42</span>  -<span style="color: #BB0000;">1.42</span>  0.178 0.176 -<span style="color: #BB0000;">1.72</span> -<span style="color: #BB0000;">1.14</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]  -<span style="color: #BB0000;">1.48</span>  -<span style="color: #BB0000;">1.47</span>  0.182 0.172 -<span style="color: #BB0000;">1.79</span> -<span style="color: #BB0000;">1.18</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]  -<span style="color: #BB0000;">1.42</span>  -<span style="color: #BB0000;">1.42</span>  0.131 0.128 -<span style="color: #BB0000;">1.65</span> -<span style="color: #BB0000;">1.21</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]  -<span style="color: #BB0000;">1.39</span>  -<span style="color: #BB0000;">1.39</span>  0.115 0.116 -<span style="color: #BB0000;">1.57</span> -<span style="color: #BB0000;">1.20</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]  -<span style="color: #BB0000;">1.25</span>  -<span style="color: #BB0000;">1.25</span>  0.145 0.132 -<span style="color: #BB0000;">1.49</span> -<span style="color: #BB0000;">1.01</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]  -<span style="color: #BB0000;">1.21</span>  -<span style="color: #BB0000;">1.21</span>  0.127 0.129 -<span style="color: #BB0000;">1.41</span> -<span style="color: #BB0000;">1.01</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10] -<span style="color: #BB0000;">0.974</span> -<span style="color: #BB0000;">0.978</span> 0.162 0.152 -<span style="color: #BB0000;">1.23</span> -<span style="color: #BB0000;">0.706</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 452 more rows</span></span></span></code></pre></div>
 <p>We can compare two different model fits of the probability of prior
 kit use to simulated data using the <code>plot_kit_use</code>
@@ -236,12 +240,12 @@ probability of naloxone use in time.</p>
 <span><span class="va">rw2_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,</span>
 <span>                    rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                    iter<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 98 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 122 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 1754 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; Warning: There were 1529 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
-<span><span class="co">#&gt; Warning: There were 3 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
+<span><span class="co">#&gt; Warning: There were 4 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
@@ -262,16 +266,16 @@ probability of naloxone use in time.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 462 × 4</span></span></span>
 <span><span class="co">#&gt;    variable  rhat ess_bulk ess_tail</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]   1.17     55.2     90.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]   1.15     41.6     51.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]   1.18     51.4     51.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]   1.18     53.9     44.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]   1.18     51.7     33.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]   1.14     76.2     32.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]   1.18     24.1     62.9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]   1.08     52.7     36.2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]   1.19     88.6     47.4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10]  1.08     65.0    247. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]   1.07     60.9     180.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]   1.08     81.3     107.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]   1.10    103.      120.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]   1.08    115.      230.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]   1.05    133.      232.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]   1.03    138.      158.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]   1.06     81.4     231.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]   1.04    107.      174.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]   1.04    155.      542.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10]  1.05    135.      261.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 452 more rows</span></span></span></code></pre></div>
 <p>We can compare two different model fits of the probability of prior
 kit use to simulated data using the <code>plot_kit_use</code>
@@ -300,10 +304,10 @@ months</p>
 <code class="sourceCode R"><span><span class="va">missing_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d_missing</span>,</span>
 <span>                    rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                    iter<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 29 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 27 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 1454 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; Warning: There were 1828 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
 <span><span class="co">#&gt; Warning: There were 4 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
@@ -323,6 +327,48 @@ months</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">missing_fit</span>, data<span class="op">=</span><span class="va">d_missing</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/plot%20draws%20with%20missing%20data-1.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="change-scale-of-data">Change scale of data<a class="anchor" aria-label="anchor" href="#change-scale-of-data"></a>
+</h2>
+<p>the original model was designed for data aggregated into months. If
+the order and distribution data is aggregated differently then this can
+be incorporated into the model by updating the delay in reporting
+distribution and the delay in ordering to distributing distribution.</p>
+<p>The delay in ordering to distributing distribution is composed of a
+gamma distribution with shape parameter <span class="math inline">\(\alpha\)</span> and inverse scale parameter <span class="math inline">\(\beta = 1/\theta\)</span>. In order to update for
+example from monthly to weekly data, we can use the following property
+of the gamma distribution,</p>
+<p><span class="math display">\[\Gamma(cx;\alpha,\beta) =
+\Gamma(x;\alpha,\beta/c)\]</span></p>
+<p>To convert the delay distribution from month into week set <span class="math inline">\(c = 1/4\)</span> as one over the approximate
+number of weeks in a month. The reporting delay distribution is a simple
+vector of length 3 denoting the empirical delay distribution. This can
+be expanded into months through interpolation and normalization to
+retain its property as a probability distribution. Example code (not
+run) is shown below. Note that these distributions will need to be
+updated when considering another jurisdiction,</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># monthly reporting delay distribution</span></span>
+<span><span class="va">psi_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="co"># convert to weeks using interpolation</span></span>
+<span><span class="va">weekly_psi_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">psi_vec</span>,<span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">psi_vec</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># properties of order to distributed delay distribution in months</span></span>
+<span><span class="va">max_delays</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">delay_alpha</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">delay_beta</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span></span>
+<span><span class="co"># convert to weeks</span></span>
+<span><span class="va">weekly_max_delays</span> <span class="op">&lt;-</span> <span class="va">max_delays</span><span class="op">*</span><span class="fl">4</span></span>
+<span><span class="va">weekly_delay_alpha</span> <span class="op">&lt;-</span> <span class="va">delay_alpha</span></span>
+<span><span class="va">weekly_delay_beta</span> <span class="op">&lt;-</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="va">delay_beta</span> </span>
+<span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,</span>
+<span> psi_vec <span class="op">=</span> <span class="va">weekly_psi_vec</span>,</span>
+<span> max_delays <span class="op">=</span> <span class="va">weekly_max_delays</span>,</span>
+<span> delay_alpha <span class="op">=</span> <span class="va">weekly_delay_alpha</span>,</span>
+<span> delay_beta <span class="op">=</span> <span class="va">weekly_delay_beta</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
