@@ -139,4 +139,36 @@ mcmc_pairs(missing_fit, pars = c("sigma","mu0","zeta"),
 plot_kit_use(model = missing_fit, data=d_missing)
 ```
 
+## Change scale of data
 
+the original model was designed for data aggregated into months. If the order and distribution data is aggregated differently then this can be incorporated into the model by updating the delay in reporting distribution and the delay in ordering to distributing distribution. 
+
+The delay in ordering to distributing distribution is composed of a gamma distribution with shape parameter $\alpha$ and inverse scale parameter $\beta = 1/\theta$. In order to update for example from monthly to weekly data, we can use the following property of the gamma distribution,
+
+$$\Gamma(cx;\alpha,\beta) = \Gamma(x;\alpha,\beta/c)$$
+
+To convert the delay distribution from month into week set $c = 1/4$ as one over the approximate number of weeks in a month. The reporting delay distribution is a simple vector of length 3 denoting the empirical delay distribution. This can be expanded into months through interpolation and normalization to retain its property as a probability distribution. Example code (not run) is shown below. Note that these distributions will need to be updated when considering another jurisdiction,
+
+```{r example change units of data, eval = FALSE}
+# monthly reporting delay distribution
+psi_vec <- c(0.7, 0.2, 0.1)
+# convert to weeks using interpolation
+weekly_psi_vec <- rep(psi_vec,4) / sum(psi_vec)
+
+# properties of order to distributed delay distribution in months
+max_delays <- 3
+delay_alpha <- 2
+delay_beta <- 1
+
+# convert to weeks
+weekly_max_delays <- max_delays*4
+weekly_delay_alpha <- delay_alpha
+weekly_delay_beta <- 0.25 * delay_beta 
+
+result <- est_naloxone(d,
+ psi_vec = weekly_psi_vec,
+ max_delays = weekly_max_delays,
+ delay_alpha = weekly_delay_alpha,
+ delay_beta = weekly_delay_beta)
+
+```
