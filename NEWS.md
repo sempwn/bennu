@@ -1,5 +1,7 @@
 # bennu 0.1.0
 
+* `est_naloxone` can accept `psi_vector` of variable length and additionally
+accepts `delay_alpha` and `delay_beta` (#12).
 * `est_naloxone` can accept missing values for `Reported_Distributed` and
 `Reported_Used` columns (#6).
 
