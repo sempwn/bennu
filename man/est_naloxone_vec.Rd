@@ -15,6 +15,9 @@ est_naloxone_vec(
   Reported_Used,
   region_name,
   psi_vec = c(0.7, 0.2, 0.1),
+  max_delays = 3,
+  delay_alpha = 2,
+  delay_beta = 1,
   run_estimation = TRUE,
   rw_type = 1,
   chains = 4,
@@ -44,6 +47,13 @@ est_naloxone_vec(
 \item{region_name}{bring in region names}
 
 \item{psi_vec}{reporting delay distribution}
+
+\item{max_delays}{maximum delay from kit ordered to kit distributed}
+
+\item{delay_alpha}{shape parameter for order to distributed delay
+distribution}
+
+\item{delay_beta}{shape parameter for order to distributed delay distribution}
 
 \item{run_estimation}{if \code{TRUE} will sample from posterior otherwise will
 sample from prior only}

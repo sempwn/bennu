@@ -13,6 +13,10 @@
 #' @param Reported_Used vector (time, region) reported as used
 #' @param region_name bring in region names
 #' @param psi_vec reporting delay distribution
+#' @param max_delays maximum delay from kit ordered to kit distributed
+#' @param delay_alpha shape parameter for order to distributed delay
+#' distribution
+#' @param delay_beta shape parameter for order to distributed delay distribution
 #' @param run_estimation if `TRUE` will sample from posterior otherwise will
 #' sample from prior only
 #' @param rw_type `1` - random walk of order one. `2` - random walk of order 2.
@@ -30,6 +34,9 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
                              Reported_Used,
                              region_name,
                              psi_vec = c(0.7, 0.2, 0.1),
+                             max_delays = 3,
+                             delay_alpha = 2,
+                             delay_beta = 1,
                              run_estimation = TRUE,
                              rw_type = 1,
                              chains = 4,
@@ -55,8 +62,8 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
       # total number of rows in reported distribution data
       N_distributed = N_distributed,
       # //parameters for delay distribution
-      alpha = 2,
-      beta = 1,
+      alpha = delay_alpha,
+      beta = delay_beta,
       # //max number for delay distribution
       max_delays = 3,
       #
@@ -79,7 +86,7 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
       Reported_Used = Reported_Used,
 
       # // reporting delay distribution
-      N_psi = 3,
+      N_psi = length(psi_vec),
       psi = psi_vec,
 
       # // bring in region / site type names
@@ -136,6 +143,9 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
 #' @export
 est_naloxone <- function(d,
                          psi_vec = c(0.7, 0.2, 0.1),
+                         max_delays = 3,
+                         delay_alpha = 2,
+                         delay_beta = 1,
                          run_estimation = TRUE,
                          rw_type = 1,
                          chains = 4,
@@ -188,6 +198,9 @@ est_naloxone <- function(d,
     Reported_Distributed, Reported_Used,
     region_name,
     psi_vec = psi_vec,
+    max_delays = max_delays,
+    delay_alpha = delay_alpha,
+    delay_beta = delay_beta,
     run_estimation = run_estimation,
     rw_type = rw_type,
     chains = chains,
