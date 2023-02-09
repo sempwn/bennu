@@ -14,7 +14,8 @@
 plot_kit_use <- function(..., data = NULL) {
   combined_plot_data <- combine_model_fits(..., data = data)
 
-  region <- model <- times <- sim_p <- p_use <- NULL
+  region <- model <- times <- sim_p <- p_use <- region_name <- NULL
+  p50 <- p05 <- p95 <- p25 <- p75 <- NULL
 
   # add true values as NULL if doesn't exist in data
   if(!"p_use" %in% names(combined_plot_data)){
@@ -54,7 +55,7 @@ plot_kit_use <- function(..., data = NULL) {
 
   if (length(list(...)) > 1) {
     p_use_plot <- p_use_plot +
-      facet_wrap(ggplot2::vars(model))
+      ggplot2::facet_wrap(ggplot2::vars(model))
   }
 
   p_use_plot <- p_use_plot +
@@ -68,6 +69,8 @@ plot_kit_use <- function(..., data = NULL) {
 #' to also include region and time components
 #' @noRd
 combine_model_fits <- function(..., data = NULL) {
+  sim_p <- i <- NULL
+
   fit_list <- list(...)
 
   comparison_tibble <- dplyr::tibble()

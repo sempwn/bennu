@@ -1,5 +1,5 @@
 Package: bennu
-Title: Bayesian Estimation of Naloxone kit Number Under-reporting.
+Title: Bayesian Estimation of Naloxone Kit Number Under-Reporting
 Version: 0.1.0
 Authors@R: c(
     person(given = "Mike",
