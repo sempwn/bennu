@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: c(
     person(given = "Mike",
            family = "Irvine",
-           role = c("aut", "cre"),
+           role = c("aut", "cre","cph"),
            email = "mike.irvine@bccdc.ca",
            comment = c(ORCID = "0000-0003-4785-8998")),
     person("Samantha","Bardwell",role="ctb")
@@ -12,7 +12,7 @@ Authors@R: c(
 Description: Bayesian model and associated tools for generating estimates of 
     total naloxone kit numbers distributed and used from naloxone kit orders 
     data. Provides functions for generating simulated data of naloxone kit use
-    and functions for generating samples from the posterior.
+    and functions for generating samples from the posterior
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

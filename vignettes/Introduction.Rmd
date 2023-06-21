@@ -21,12 +21,12 @@ library(bayesplot)
 library(ggplot2)
 
 rstan_options(auto_write = TRUE)
-options(mc.cores = parallel::detectCores(logical = FALSE))
+options(mc.cores = 2)
 
 ## basic example code
 d <- generate_model_data()
 # note iter should be at least 2000 to generate a reasonable posterior sample
-fit <- est_naloxone(d,iter=1000)
+fit <- est_naloxone(d,iter=100)
 mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
@@ -54,7 +54,7 @@ parameter to `FALSE`
 # note iter should be at least 2000 to generate a reasonable posterior sample
 prior_fit <- est_naloxone(d,
                           run_estimation = FALSE,
-                          iter=1000)
+                          iter=100)
 mcmc_pairs(prior_fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
@@ -87,7 +87,7 @@ naloxone use in time.
 # note use `rw_type` to specify order of random walk
 rw2_fit <- est_naloxone(d,
                     rw_type = 2,
-                    iter=1000)
+                    iter=100)
 mcmc_pairs(rw2_fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
@@ -128,7 +128,7 @@ ggplot(aes(x=times,y=Reported_Used,color=as.factor(regions)),data=d_missing) +
 ```{r missing data inference}
 missing_fit <- est_naloxone(d_missing,
                     rw_type = 2,
-                    iter=1000)
+                    iter=100)
 mcmc_pairs(missing_fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 
