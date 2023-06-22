@@ -18,6 +18,17 @@
 #' @param c_region logit probability of kit use per region
 #' @param reporting_freq The frequency that distribution data is provided.
 #'  If `NULL` distribution frequency matches orders frequency
+#' @return A tibble
+#' \describe{
+#'   \item{Orders}{Kit orders per time and region}
+#'   \item{regions}{Numeric index indicating region of orders and distributions}
+#'   \item{Reported_Used}{Number of kits reported as used}
+#'   \item{Reported_Distributed}{Number of kits reported as distributed}
+#'   \item{p_use}{Probability that a kit was used}
+#'   \item{p_reported}{Probability that a distributed kit was reported}
+#'   \item{times}{Index for time}
+#'   \item{region_name}{String index for the region}
+#' }
 #' @export
 #' @importFrom stats rbinom rnorm
 #' @family data generation
