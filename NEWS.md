@@ -1,3 +1,5 @@
+# bennu 0.2.1
+
 # bennu 0.2.0
 
 # bennu 0.1.0
