@@ -1,3 +1,9 @@
+# bennu (development version)
+
+# bennu 0.2.1
+
+# bennu 0.2.0
+
 # bennu 0.1.0
 
 * `est_naloxone` can accept `psi_vector` of variable length and additionally

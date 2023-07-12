@@ -56,10 +56,14 @@ for each chain (including warmup). The default is 2000.}
 
 \item{...}{other parameters to pass to \link[rstan:stanmodel-method-sampling]{rstan::sampling}}
 }
+\value{
+An S4 stanfit class object containing the fitted model
+}
 \description{
 Samples from Bayesian model using input from data frame
 }
 \examples{
+\dontrun{
 library(rstan)
 library(bayesplot)
 
@@ -72,6 +76,7 @@ mcmc_pairs(fit,
   pars = c("sigma", "mu0"),
   off_diag_args = list(size = 1, alpha = 0.5)
 )
+}
 }
 \seealso{
 Other inference: 
