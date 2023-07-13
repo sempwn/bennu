@@ -24,6 +24,8 @@ Depends:
 Imports: 
     dplyr,
     ggplot2,
+    glue,
+    lifecycle,
     magrittr,
     methods,
     Rcpp (>= 0.12.0),
