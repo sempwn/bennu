@@ -166,7 +166,7 @@ model_random_walk_data <- function(N_t = 24,
 
   # probability reported
   logp_reported <- rnorm(N_region * N_t, 2, 5)
-  p_reported <- inv_logit(-logp_reported)
+  p_reported <- inv_logit(logp_reported)
 
   Orders2D <- Orders
 
@@ -196,6 +196,8 @@ model_random_walk_data <- function(N_t = 24,
     p_use = p_use, p_reported = p_reported,
     times = times, region_name = region_name,
   )
+
+  return(example_data)
 }
 
 #' generate a random walk of length n
@@ -209,6 +211,9 @@ random_walk_generator <- function(s0, zeta, n) {
 }
 
 #' inverse logit
+#' @param x numeric
+#' @return numeric
+#' @noRd
 inv_logit <- function(x) {
   1 / (1 + exp(-x))
 }
