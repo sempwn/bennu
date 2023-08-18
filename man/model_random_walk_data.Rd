@@ -50,3 +50,8 @@ A tibble
 Model generating process using random walk to match data generating model
 in Bayesian framework
 }
+\seealso{
+Other data generation: 
+\code{\link{generate_model_data}()}
+}
+\concept{data generation}

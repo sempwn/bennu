@@ -50,4 +50,8 @@ The probability of reporting for each month and region is iid distributed
 \eqn{\text{logit}^{-1}(p) \sim N(2,5)} which produces a mean reporting rate
 of approximately 88\%
 }
+\seealso{
+Other data generation: 
+\code{\link{model_random_walk_data}()}
+}
 \concept{data generation}

@@ -21,3 +21,8 @@ test_that("check input errors with different lengths for regions", {
       generate_model_data(region_coeffs = c(1,2,3),c_region = c(1))
   )
 })
+
+test_that("model_random_walk_data produces tibble", {
+  d <- model_random_walk_data()
+  testthat::expect_type(d,"list")
+})
