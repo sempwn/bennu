@@ -63,7 +63,6 @@ generate_model_data <- function(N_t = 24,
     region_name[i, ] <- i
   }
 
-  Orders2D <- Orders
 
   # flatten 2D arrays
   Orders <- as.vector(t(Orders))
@@ -168,26 +167,26 @@ model_random_walk_data <- function(N_t = 24,
   }
 
 
-
+  # flatten 2D arrays
+  Orders <- as.vector(t(Orders))
+  regions <- as.vector(t(regions))
+  times <- as.vector(t(times))
+  region_name <- as.vector(t(region_name))
 
   # create probability of use and reported
 
   # probability of use
   c_time <- random_walk_generator(0, zeta, N_t)
-  logp <- mu0 + c_time[times] + c_region[regions] + stats::rnorm(N_t, sd = sigma)
+  errs <- stats::rnorm(N_region * N_t, sd = sigma)
+  logp <- mu0 + c_time[times] + c_region[regions] + errs
   p_use <- inv_logit(logp)
 
   # probability reported
   logp_reported <- rnorm(N_region * N_t, 2, 5)
   p_reported <- inv_logit(logp_reported)
 
-  Orders2D <- Orders
 
-  # flatten 2D arrays
-  Orders <- as.vector(t(Orders))
-  regions <- as.vector(t(regions))
-  times <- as.vector(t(times))
-  region_name <- as.vector(t(region_name)) # Add in so code works for real data with names
+
 
   # vector (time, region) reported as distributed
   Reported_Distributed <- rbinom(N_region * N_t, Orders, p_reported)

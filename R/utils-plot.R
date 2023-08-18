@@ -91,3 +91,15 @@ combine_model_fits <- function(..., data = NULL) {
 
   return(comparison_tibble)
 }
+
+
+#' plot probability of use from simulated data
+#' @param d dataframe
+#' @noRd
+plot_p_use_data <- function(d){
+  times <- p_use <- regions <- NULL
+  d %>%
+    ggplot2::ggplot(ggplot2::aes(x=times,y=p_use,color=as.factor(regions))) +
+    ggplot2::geom_line() +
+    ggplot2::geom_point()
+}
