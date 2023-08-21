@@ -1,5 +1,10 @@
 # bennu (development version)
 
+* `model_random_walk_data` created to more closely mimic Bayesian data 
+generating process
+* `generate_model_data` deprecated as `model_random_walk_data` will supplant it
+as way of generating simulation data to test properties of the model
+
 # bennu 0.2.1
 
 # bennu 0.2.0
