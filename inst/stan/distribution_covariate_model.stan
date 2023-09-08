@@ -117,15 +117,15 @@ transformed data{
   // create delay distribution for distribution of THN
   vector[max_delays] distribute_pmf;
   vector[max_delays] reverse_distribute_pmf;
-  real trunc_pmf;
+  real trunc_lpmf;
   matrix[N_t,N_t] reporting_delay_matrix;
 
 
   // calculate discretized  delay distribution
-  trunc_pmf = gamma_cdf(max_delays + 1 | alpha, beta) - gamma_cdf(1 | alpha, beta);
+  trunc_lpmf = log_diff_exp(gamma_lcdf(max_delays + 1 | alpha, beta), gamma_lcdf(1 | alpha, beta));
   for (i in 1:max_delays){
-    distribute_pmf[i] = (gamma_cdf(i + 1 | alpha, beta) - gamma_cdf(i | alpha, beta)) /
-    trunc_pmf;
+    real distribute_lpmf = log_diff_exp(gamma_lcdf(i + 1 | alpha, beta), gamma_lcdf(i | alpha, beta)) - trunc_lpmf;
+    distribute_pmf[i] = exp(distribute_lpmf);
   }
   // reverse delay distribution
   reverse_distribute_pmf = rev_func(distribute_pmf);
