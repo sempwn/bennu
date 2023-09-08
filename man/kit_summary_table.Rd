@@ -4,13 +4,22 @@
 \alias{kit_summary_table}
 \title{Summarize model fit}
 \usage{
-kit_summary_table(fit, ..., data = NULL, accuracy = 0.01)
+kit_summary_table(fit, ..., data = NULL, accuracy = 0.01, cri_range = 0.95)
 }
 \arguments{
+\item{fit}{\link{stanfit} object}
+
+\item{...}{variables to group by in estimate}
+
+\item{data}{data used for model fitting. Can also include \code{p_use} column
+which can be used to plot true values if derived from simulated data.}
+
 \item{accuracy}{A number to round to. Use (e.g.) 0.01 to show 2 decimal
 places of precision. If NULL, the default, uses a heuristic that should
 ensure breaks have the minimum number of digits needed to show the
 difference between adjacent values.}
+
+\item{cri_range}{The range of the credible interval e.g. 0.95}
 }
 \description{
 Provides a summary of:
@@ -21,5 +30,11 @@ Provides a summary of:
 \item percentage of kits used that are reported
 \item percentage of kits orders that are used
 \item probability kit used if distributed
+}
+}
+\examples{
+\dontrun{
+  fit <- est_naloxone(d)
+  kit_summary_table(fit,regions,data = d)
 }
 }
