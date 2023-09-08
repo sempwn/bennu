@@ -85,25 +85,25 @@ data {
 
   // delay distribution for time of kit use to reporting
   int<lower=0> N_psi;
-  real<lower=0> psi[N_psi];
+  array[N_psi] real<lower=0> psi;
 
   // vector (time, HSDA) of regions (coded 1 to N_region)
-  int<lower=1,upper=N_region> regions[N_distributed];
+  array[N_distributed] int<lower=1,upper=N_region> regions;
 
   // vector (time, HSDA) of regions (coded 1 to N_t)
-  int<lower=1,upper=N_t> times[N_distributed];
+  array[N_distributed] int<lower=1,upper=N_t> times;
 
   // vector (time, HSDA) of orders
-  int Orders[N];
+  array[N] int Orders;
 
   // create 2D version of Orders data
-  int Orders2D[N_region,N_t];
+  array[N_region,N_t] int Orders2D;
 
   // vector (time, HSDA) reported as distributed
-  int Reported_Distributed[N_distributed];
+  array[N_distributed] int Reported_Distributed;
 
   // vector (time, HSDA) reported as used
-  int Reported_Used[N_distributed];
+  array[N_distributed] int Reported_Used;
 
   //hyper-priors
   real<lower=0> mu0_sigma;
@@ -117,15 +117,15 @@ transformed data{
   // create delay distribution for distribution of THN
   vector[max_delays] distribute_pmf;
   vector[max_delays] reverse_distribute_pmf;
-  real trunc_pmf;
+  real trunc_lpmf;
   matrix[N_t,N_t] reporting_delay_matrix;
 
 
   // calculate discretized  delay distribution
-  trunc_pmf = gamma_cdf(max_delays + 1, alpha, beta) - gamma_cdf(1, alpha, beta);
+  trunc_lpmf = log_diff_exp(gamma_lcdf(max_delays + 1 | alpha, beta), gamma_lcdf(1 | alpha, beta));
   for (i in 1:max_delays){
-    distribute_pmf[i] = (gamma_cdf(i + 1, alpha, beta) - gamma_cdf(i, alpha, beta)) /
-    trunc_pmf;
+    real distribute_lpmf = log_diff_exp(gamma_lcdf(i + 1 | alpha, beta), gamma_lcdf(i | alpha, beta)) - trunc_lpmf;
+    distribute_pmf[i] = exp(distribute_lpmf);
   }
   // reverse delay distribution
   reverse_distribute_pmf = rev_func(distribute_pmf);
@@ -141,13 +141,13 @@ transformed data{
 
 // The parameters accepted by the model.
 parameters {
-  real logp[N_distributed];
+  array[N_distributed] real logp;
   real<lower=0> sigma;
   real<lower=0> zeta;
   real mu0;
 
-  real c[N_region]; // region covariates
-  real ct[N_t]; // time covariates
+  array[N_region] real c; // region covariates
+  array[N_t] real ct; // time covariates
 
 
 
@@ -155,7 +155,7 @@ parameters {
 
 //transformed parameters
 transformed parameters{
-  real p[N_distributed];
+  array[N_distributed] real p;
 
   p = inv_logit(logp);
 }
@@ -196,17 +196,17 @@ model {
 
 // simulated quantities based on model
 generated quantities {
-  int sim_used[N];
+  array[N] int sim_used;
   //vector[N] sim_used;
-  int Distributed[N];
-  int Distributed2D[N_region,N_t];
-  real sim_p[N];
-  real sim_p2D[N_region,N_t];
+  array[N] int Distributed;
+  array[N_region,N_t] int Distributed2D;
+  array[N] real sim_p;
+  array[N_region,N_t] real sim_p2D;
 
   vector[N] sim_actual_used;
 
-  int region_distributed[N_t];
-  int convolve_region_distributed[N_t];
+  array[N_t] int region_distributed;
+  array[N_t] int convolve_region_distributed;
 
 
   for(i in 1:N_region){
