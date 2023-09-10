@@ -21,4 +21,8 @@ model fit by region. If data are simulated then can also include in plot.
 For more details see the introduction vignette:
 \code{vignette("Introduction", package = "bennu")}
 }
+\seealso{
+Other plots: 
+\code{\link{kit_summary_table}()}
+}
 \concept{plots}

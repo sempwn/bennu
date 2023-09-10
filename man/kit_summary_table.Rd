@@ -21,6 +21,17 @@ difference between adjacent values.}
 
 \item{cri_range}{The range of the credible interval e.g. 0.95}
 }
+\value{
+\link[dplyr:reexports]{dplyr::tibble}
+\describe{
+\item{Probability of kit use if distributed}{}
+\item{Estimated as distributed}{}
+\item{Proportion kits distributed that are reported}{}
+\item{Estimated kits used}{}
+\item{Proportion kits used that are reported}{}
+\item{Proportion kits ordered that are used}{}
+}
+}
 \description{
 Provides a summary of:
 \itemize{
@@ -38,3 +49,8 @@ Provides a summary of:
   kit_summary_table(fit,regions,data = d)
 }
 }
+\seealso{
+Other plots: 
+\code{\link{plot_kit_use}()}
+}
+\concept{plots}
