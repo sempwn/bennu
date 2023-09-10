@@ -37,6 +37,7 @@
 #'   fit <- est_naloxone(d)
 #'   kit_summary_table(fit,regions,data = d)
 #' }
+#' @family plots
 kit_summary_table <- function(fit, ..., data = NULL,
                               accuracy = 0.01, cri_range = 0.95) {
 
