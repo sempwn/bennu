@@ -13,5 +13,6 @@ reference:
 - title: Plot Functions
   contents:
   - starts_with("plot_")
+  - kit_summary_table
 
 

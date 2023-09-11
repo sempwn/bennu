@@ -1,5 +1,3 @@
-
-
 #' Plot of probability of naloxone kit use
 #' @description plot can compare between two different model fits or a single
 #' model fit by region. If data are simulated then can also include in plot.
@@ -18,7 +16,7 @@ plot_kit_use <- function(..., data = NULL) {
   p50 <- p05 <- p95 <- p25 <- p75 <- NULL
 
   # add true values as NULL if doesn't exist in data
-  if(!"p_use" %in% names(combined_plot_data)){
+  if (!"p_use" %in% names(combined_plot_data)) {
     combined_plot_data[["p_use"]] <- NA_real_
   }
 
@@ -60,7 +58,7 @@ plot_kit_use <- function(..., data = NULL) {
 
   p_use_plot <- p_use_plot +
     ggplot2::scale_y_continuous(labels = scales::percent) +
-    ggplot2::labs(x="Time",y="Probability of prior kit use")
+    ggplot2::labs(x = "Time", y = "Probability of prior kit use")
 
   return(p_use_plot)
 }
@@ -77,11 +75,15 @@ combine_model_fits <- function(..., data = NULL) {
   for (model in names(fit_list)) {
     out <- fit_list[[model]] %>%
       tidybayes::spread_draws(sim_p[i]) %>%
-      dplyr::mutate(model = model) %>%
-      dplyr::left_join(
-        dplyr::mutate(data, i = dplyr::row_number()),
-        by = "i"
-      )
+      dplyr::mutate(model = model)
+
+    if (!is.null(data)) {
+      out <- out %>%
+        dplyr::left_join(
+          dplyr::mutate(data, i = dplyr::row_number()),
+          by = "i"
+        )
+    }
 
     comparison_tibble <- dplyr::bind_rows(
       comparison_tibble,
@@ -96,10 +98,10 @@ combine_model_fits <- function(..., data = NULL) {
 #' plot probability of use from simulated data
 #' @param d dataframe
 #' @noRd
-plot_p_use_data <- function(d){
+plot_p_use_data <- function(d) {
   times <- p_use <- regions <- NULL
   d %>%
-    ggplot2::ggplot(ggplot2::aes(x=times,y=p_use,color=as.factor(regions))) +
+    ggplot2::ggplot(ggplot2::aes(x = times, y = p_use, color = as.factor(regions))) +
     ggplot2::geom_line() +
     ggplot2::geom_point()
 }
