@@ -28,7 +28,7 @@
 #' @param adapt_delta (double, between 0 and 1, defaults to 0.8)
 #' @param ... other parameters to pass to [rstan::sampling]
 #' @family inference
-#' @return An S4 stanfit class object containing the fitted model
+#' @return An S4 [rstan::stanfit] class object containing the fitted model
 #' @export
 est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
                              times, Orders2D, Reported_Distributed,
@@ -143,7 +143,7 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
 #' }
 #' @inheritParams est_naloxone_vec
 #' @family inference
-#' @return An S4 stanfit class object containing the fitted model
+#' @return An S4 [rstan::stanfit] class object containing the fitted model
 #' @export
 est_naloxone <- function(d,
                          psi_vec = c(0.7, 0.2, 0.1),
