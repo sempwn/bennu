@@ -8,4 +8,6 @@ GNU make is a SystemRequirements.
 
 0 errors √ | 0 warnings √ | 1 notes x
 
+- Removed accidentally committed `revdepcheck` files
+
 
