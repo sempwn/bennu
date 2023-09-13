@@ -135,7 +135,7 @@
 <span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
-<span><span class="co">#&gt; Warning: There were 34 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 8 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
@@ -172,18 +172,18 @@
 <span></span>
 <span><span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">summarise_draws</a></span><span class="op">(</span><span class="va">fit</span>, <span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">default_summary_measures</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 462 × 7</span></span></span>
-<span><span class="co">#&gt;    variable  mean median     sd    mad    q5    q95</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]  -<span style="color: #BB0000;">1.31</span>  -<span style="color: #BB0000;">1.28</span> 0.367  0.308  -<span style="color: #BB0000;">2.03</span> -<span style="color: #BB0000;">0.668</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]  -<span style="color: #BB0000;">1.35</span>  -<span style="color: #BB0000;">1.37</span> 0.283  0.283  -<span style="color: #BB0000;">1.88</span> -<span style="color: #BB0000;">0.920</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]  -<span style="color: #BB0000;">1.29</span>  -<span style="color: #BB0000;">1.29</span> 0.278  0.283  -<span style="color: #BB0000;">1.71</span> -<span style="color: #BB0000;">0.784</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]  -<span style="color: #BB0000;">1.35</span>  -<span style="color: #BB0000;">1.36</span> 0.193  0.209  -<span style="color: #BB0000;">1.68</span> -<span style="color: #BB0000;">1.07</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]  -<span style="color: #BB0000;">1.28</span>  -<span style="color: #BB0000;">1.27</span> 0.223  0.215  -<span style="color: #BB0000;">1.67</span> -<span style="color: #BB0000;">0.916</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]  -<span style="color: #BB0000;">1.19</span>  -<span style="color: #BB0000;">1.24</span> 0.261  0.264  -<span style="color: #BB0000;">1.56</span> -<span style="color: #BB0000;">0.747</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]  -<span style="color: #BB0000;">1.25</span>  -<span style="color: #BB0000;">1.25</span> 0.173  0.185  -<span style="color: #BB0000;">1.55</span> -<span style="color: #BB0000;">1.00</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]  -<span style="color: #BB0000;">1.33</span>  -<span style="color: #BB0000;">1.32</span> 0.170  0.161  -<span style="color: #BB0000;">1.61</span> -<span style="color: #BB0000;">1.09</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]  -<span style="color: #BB0000;">1.21</span>  -<span style="color: #BB0000;">1.21</span> 0.101  0.085<span style="text-decoration: underline;">8</span> -<span style="color: #BB0000;">1.40</span> -<span style="color: #BB0000;">1.07</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10] -<span style="color: #BB0000;">1.05</span>  -<span style="color: #BB0000;">1.05</span> 0.081<span style="text-decoration: underline;">8</span> 0.082<span style="text-decoration: underline;">3</span> -<span style="color: #BB0000;">1.18</span> -<span style="color: #BB0000;">0.924</span></span></span>
+<span><span class="co">#&gt;    variable   mean median    sd   mad    q5    q95</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]  -<span style="color: #BB0000;">1.70</span>  -<span style="color: #BB0000;">1.67</span>  0.576 0.557 -<span style="color: #BB0000;">2.74</span> -<span style="color: #BB0000;">0.866</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]  -<span style="color: #BB0000;">1.67</span>  -<span style="color: #BB0000;">1.65</span>  0.508 0.467 -<span style="color: #BB0000;">2.54</span> -<span style="color: #BB0000;">0.885</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]  -<span style="color: #BB0000;">1.70</span>  -<span style="color: #BB0000;">1.69</span>  0.412 0.378 -<span style="color: #BB0000;">2.38</span> -<span style="color: #BB0000;">1.08</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]  -<span style="color: #BB0000;">1.63</span>  -<span style="color: #BB0000;">1.62</span>  0.318 0.303 -<span style="color: #BB0000;">2.18</span> -<span style="color: #BB0000;">1.19</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]  -<span style="color: #BB0000;">1.55</span>  -<span style="color: #BB0000;">1.52</span>  0.261 0.289 -<span style="color: #BB0000;">1.94</span> -<span style="color: #BB0000;">1.16</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]  -<span style="color: #BB0000;">1.48</span>  -<span style="color: #BB0000;">1.48</span>  0.170 0.167 -<span style="color: #BB0000;">1.77</span> -<span style="color: #BB0000;">1.21</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]  -<span style="color: #BB0000;">1.48</span>  -<span style="color: #BB0000;">1.49</span>  0.177 0.170 -<span style="color: #BB0000;">1.76</span> -<span style="color: #BB0000;">1.19</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]  -<span style="color: #BB0000;">1.20</span>  -<span style="color: #BB0000;">1.18</span>  0.262 0.235 -<span style="color: #BB0000;">1.65</span> -<span style="color: #BB0000;">0.735</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]  -<span style="color: #BB0000;">1.08</span>  -<span style="color: #BB0000;">1.06</span>  0.278 0.325 -<span style="color: #BB0000;">1.53</span> -<span style="color: #BB0000;">0.668</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10] -<span style="color: #BB0000;">0.978</span> -<span style="color: #BB0000;">0.987</span> 0.267 0.282 -<span style="color: #BB0000;">1.39</span> -<span style="color: #BB0000;">0.563</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 452 more rows</span></span></span></code></pre></div>
 <p>We can compare two different model fits of the probability of prior
 kit use to simulated data using the <code>plot_kit_use</code>
@@ -246,11 +246,9 @@ probability of naloxone use in time.</p>
 <span><span class="va">rw2_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,</span>
 <span>                    rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                    iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 44 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 12 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 2 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
-<span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
 <span><span class="co">#&gt; Running the chains for more iterations may help. See</span></span>
@@ -270,16 +268,16 @@ probability of naloxone use in time.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 462 × 4</span></span></span>
 <span><span class="co">#&gt;    variable  rhat ess_bulk ess_tail</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]   1.58     28.6     31.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]   1.52     30.6     31.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]   1.50     22.4     30.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]   1.51     28.7     30.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]   1.31     12.2     70.2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]   1.23     15.3    109. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]   1.36     43.1    158. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]   1.19     36.2    169. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]   1.11     35.8    233. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10]  1.13     28.4    189. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]   1.22     44.5     61.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]   1.18     30.6     63.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]   1.14     55.8     67.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]   1.08     42.7     69.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]   1.09     76.6     76.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]   1.08     82.7     72.2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]   1.06     68.4     76.4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]   1.02     86.2    141. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]   1.04    107.     133. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10]  1.06     66.0    194. </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 452 more rows</span></span></span></code></pre></div>
 <p>We can compare two different model fits of the probability of prior
 kit use to simulated data using the <code>plot_kit_use</code>
@@ -308,10 +306,10 @@ months</p>
 <code class="sourceCode R"><span><span class="va">missing_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d_missing</span>,</span>
 <span>                    rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                    iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 5 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 11 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 4 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
+<span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
