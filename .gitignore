@@ -39,3 +39,6 @@ vignettes/*.pdf
 .Renviron
 docs
 inst/doc
+
+# Reverse dependency check files
+revdep/*

@@ -22,14 +22,14 @@ difference between adjacent values.}
 \item{cri_range}{The range of the credible interval e.g. 0.95}
 }
 \value{
-\link[dplyr:reexports]{dplyr::tibble}
-\describe{
-\item{Probability of kit use if distributed}{}
-\item{Estimated as distributed}{}
-\item{Proportion kits distributed that are reported}{}
-\item{Estimated kits used}{}
-\item{Proportion kits used that are reported}{}
-\item{Proportion kits ordered that are used}{}
+A \link[tibble:tibble]{tibble::tibble}
+\itemize{
+\item{Probability of kit use if distributed}
+\item{Estimated as distributed}
+\item{Proportion kits distributed that are reported}
+\item{Estimated kits used}
+\item{Proportion kits used that are reported}
+\item{Proportion kits ordered that are used}
 }
 }
 \description{

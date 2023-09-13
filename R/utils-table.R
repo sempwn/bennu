@@ -44,6 +44,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
 
 
   i <- sim_p <- times <- estimate <- Distributed <- Reported_Distributed <- NULL
+  sim_used <- Reported_Used <- Orders <- NULL
 
   percent_func <- scales::percent_format(accuracy = accuracy)
   comma_func <- scales::comma_format(accuracy = accuracy)

@@ -22,7 +22,7 @@ generate_model_data(
 If \code{NULL} distribution frequency matches orders frequency}
 }
 \value{
-A tibble
+A \link{tibble}
 \describe{
 \item{Orders}{Kit orders per time and region}
 \item{regions}{Numeric index indicating region of orders and distributions}
@@ -47,7 +47,7 @@ month 12 are \code{c(1,2) * 12^2 = c(144,288)}.
 The probability of kit use in time is assumed to increase linearly in inverse
 logit space at a constant rate \code{0.1}.
 The probability of reporting for each month and region is iid distributed
-\eqn{\text{logit}^{-1}(p) \sim N(2,5)} which produces a mean reporting rate
+\eqn{logit^{-1}(p) \sim N(2,5)} which produces a mean reporting rate
 of approximately 88\%
 }
 \seealso{

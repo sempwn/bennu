@@ -2,10 +2,14 @@
 
 * `kit_summary_table` created to provide a quick way of summarizing model 
 output by different strata
+
 * `model_random_walk_data` created to more closely mimic Bayesian data 
 generating process
+
 * `generate_model_data` deprecated as `model_random_walk_data` will supplant it
 as way of generating simulation data to test properties of the model
+
+* Updates to stan model to make it compliant to rstan 2.26 (#22)
 
 # bennu 0.2.1
 
