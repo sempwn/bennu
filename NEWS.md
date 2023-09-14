@@ -1,3 +1,5 @@
+# bennu (development version)
+
 # bennu 0.3.0
 
 * `kit_summary_table` created to provide a quick way of summarizing model 
