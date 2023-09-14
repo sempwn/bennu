@@ -1,5 +1,8 @@
 # bennu (development version)
 
+* `kit_summary_table`  changed to provide sum estimates by grouped variables
+as opposed to the percentiles within each group
+
 # bennu 0.3.0
 
 * `kit_summary_table` created to provide a quick way of summarizing model 

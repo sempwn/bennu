@@ -156,7 +156,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
 summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
                                    name_label, sum_func) {
 
-  estimate <- NULL
+  estimate <- .chain <- .iteration <- .draw <- NULL
 
   # calculate lower and upper bounds of range
   lb <- 0.5 * (1 - cri_range)
@@ -174,6 +174,8 @@ summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
 
   # summarize for var_name variable
   out %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(value = sum(value)) %>%
     dplyr::group_by(...) %>%
     summarise_quantiles("value", lb = lb, ub = ub) %>%
     print_as_cri(sum_func = sum_func, cri_label = cri_label) %>%
