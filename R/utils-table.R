@@ -156,7 +156,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
 summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
                                    name_label, sum_func) {
 
-  estimate <- .chain <- .iteration <- .draw <- NULL
+  estimate <- .chain <- .iteration <- .draw <- value <- NULL
 
   # calculate lower and upper bounds of range
   lb <- 0.5 * (1 - cri_range)
