@@ -63,6 +63,8 @@ kit_summary_table <- function(fit, ..., data = NULL,
   data_var_summary <- fit %>%
     tidybayes::spread_draws(Distributed[i]) %>%
     dplyr::rename("value" = "Distributed") %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(value = sum(value)) %>%
     summarise_spread_draws(
       ..., data = data, cri_range = cri_range,
       name_label = "Estimated as distributed",
@@ -79,6 +81,9 @@ kit_summary_table <- function(fit, ..., data = NULL,
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
     ) %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(Reported_Distributed = sum(Reported_Distributed),
+                     Distributed = sum(Distributed)) %>%
     dplyr::mutate(value = Reported_Distributed / Distributed) %>%
     summarise_spread_draws(
       ..., data = NULL, cri_range = cri_range,
@@ -93,6 +98,8 @@ kit_summary_table <- function(fit, ..., data = NULL,
   data_var_summary <- fit %>%
     tidybayes::spread_draws(sim_used[i]) %>%
     dplyr::rename("value" = "sim_used") %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(value = sum(value)) %>%
     summarise_spread_draws(
       ..., data = data, cri_range = cri_range,
       name_label = "Estimated kits used",
@@ -109,6 +116,9 @@ kit_summary_table <- function(fit, ..., data = NULL,
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
     ) %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(Reported_Used = sum(Reported_Used),
+                     sim_used = sum(sim_used)) %>%
     dplyr::mutate(value = Reported_Used / sim_used) %>%
     summarise_spread_draws(
       ..., data = NULL, cri_range = cri_range,
@@ -126,6 +136,9 @@ kit_summary_table <- function(fit, ..., data = NULL,
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
     ) %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(sim_used = sum(sim_used),
+                     Orders = sum(Orders)) %>%
     dplyr::mutate(value = sim_used / Orders ) %>%
     summarise_spread_draws(
       ..., data = NULL, cri_range = cri_range,
@@ -174,8 +187,6 @@ summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
 
   # summarize for var_name variable
   out %>%
-    dplyr::group_by(..., .chain, .iteration, .draw) %>%
-    dplyr::summarise(value = sum(value)) %>%
     dplyr::group_by(...) %>%
     summarise_quantiles("value", lb = lb, ub = ub) %>%
     print_as_cri(sum_func = sum_func, cri_label = cri_label) %>%
