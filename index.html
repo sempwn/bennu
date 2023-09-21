@@ -141,6 +141,19 @@
 <span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">fit</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>,<span class="st">"mu0"</span>,<span class="st">"zeta"</span><span class="op">)</span>,</span>
 <span>           off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<p>An overall summary of the model output can also be provided as a datframe</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/kit_summary_table.html">kit_summary_table</a></span><span class="op">(</span><span class="va">fit</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
+<span><span class="co">#&gt;   Probability of kit use if dist…¹ Estimated as distrib…² Proportion kits dist…³</span></span>
+<span><span class="co">#&gt;   &lt;glue&gt;                           &lt;glue&gt;                 &lt;glue&gt;                </span></span>
+<span><span class="co">#&gt; 1 65.34% (95% CrI: 18.31% - 96.36… 24,909.00 (95% CrI: 2… 58.72% (95% CrI: 58.1…</span></span>
+<span><span class="co">#&gt; # ℹ abbreviated names: ¹​`Probability of kit use if distributed`,</span></span>
+<span><span class="co">#&gt; #   ²​`Estimated as distributed`,</span></span>
+<span><span class="co">#&gt; #   ³​`Proportion kits distributed that are reported`</span></span>
+<span><span class="co">#&gt; # ℹ 3 more variables: `Estimated kits used` &lt;glue&gt;,</span></span>
+<span><span class="co">#&gt; #   `Proportion kits used that are reported` &lt;glue&gt;,</span></span>
+<span><span class="co">#&gt; #   `Proportion kits ordered that are used` &lt;glue&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>

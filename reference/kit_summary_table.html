@@ -76,7 +76,14 @@ probability kit used if distributed
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">kit_summary_table</span><span class="op">(</span><span class="va">fit</span>, <span class="va">...</span>, data <span class="op">=</span> <span class="cn">NULL</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span>, cri_range <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">kit_summary_table</span><span class="op">(</span></span>
+<span>  <span class="va">fit</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  accuracy <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>  cri_range <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  ndraws <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -103,6 +110,10 @@ difference between adjacent values.</p></dd>
 
 <dt>cri_range</dt>
 <dd><p>The range of the credible interval e.g. 0.95</p></dd>
+
+
+<dt>ndraws</dt>
+<dd><p>Number of draws to use in estimate</p></dd>
 
 </dl></div>
     <div id="value">
