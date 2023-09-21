@@ -1,5 +1,3 @@
-
-
 #' Summarize model fit
 #'
 #' @description
@@ -21,6 +19,7 @@
 #' ensure breaks have the minimum number of digits needed to show the
 #' difference between adjacent values.
 #' @param cri_range The range of the credible interval e.g. 0.95
+#' @param ndraws Number of draws to use in estimate
 #' @return A [tibble::tibble]
 #' \itemize{
 #'   \item{Probability of kit use if distributed}
@@ -39,7 +38,8 @@
 #' }
 #' @family plots
 kit_summary_table <- function(fit, ..., data = NULL,
-                              accuracy = 0.01, cri_range = 0.95) {
+                              accuracy = 0.01, cri_range = 0.95,
+                              ndraws = NULL) {
 
 
 
@@ -51,90 +51,115 @@ kit_summary_table <- function(fit, ..., data = NULL,
 
   # probability of kit used if distributed
   out <- fit %>%
-    tidybayes::spread_draws(sim_p[i]) %>%
+    tidybayes::spread_draws(sim_p[i], ndraws = ndraws) %>%
+    dplyr::left_join(
+      dplyr::mutate(data, i = dplyr::row_number()),
+      by = "i"
+    ) %>%
     dplyr::rename("value" = "sim_p") %>%
     summarise_spread_draws(
-      ..., data = data, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Probability of kit use if distributed",
       sum_func = percent_func
     )
 
   # total distributed
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(Distributed[i]) %>%
+    tidybayes::spread_draws(Distributed[i], ndraws = ndraws) %>%
+    dplyr::left_join(
+      dplyr::mutate(data, i = dplyr::row_number()),
+      by = "i"
+    ) %>%
     dplyr::rename("value" = "Distributed") %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(value = sum(value)) %>%
     summarise_spread_draws(
-      ..., data = data, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Estimated as distributed",
       sum_func = comma_func
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # percentage of kits distributed that are reported
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(Distributed[i]) %>%
+    tidybayes::spread_draws(Distributed[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
     ) %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(Reported_Distributed = sum(Reported_Distributed),
+                     Distributed = sum(Distributed)) %>%
     dplyr::mutate(value = Reported_Distributed / Distributed) %>%
     summarise_spread_draws(
-      ..., data = NULL, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Proportion kits distributed that are reported",
       sum_func = percent_func
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # estimated kits used
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(sim_used[i]) %>%
+    tidybayes::spread_draws(sim_used[i], ndraws = ndraws) %>%
+    dplyr::left_join(
+      dplyr::mutate(data, i = dplyr::row_number()),
+      by = "i"
+    ) %>%
     dplyr::rename("value" = "sim_used") %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(value = sum(value)) %>%
     summarise_spread_draws(
-      ..., data = data, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Estimated kits used",
       sum_func = comma_func
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # percentage of kits used that are reported
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(sim_used[i]) %>%
+    tidybayes::spread_draws(sim_used[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
     ) %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(Reported_Used = sum(Reported_Used),
+                     sim_used = sum(sim_used)) %>%
     dplyr::mutate(value = Reported_Used / sim_used) %>%
     summarise_spread_draws(
-      ..., data = NULL, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Proportion kits used that are reported",
       sum_func = percent_func
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # percentage of kits ordered that are used
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(sim_used[i]) %>%
+    tidybayes::spread_draws(sim_used[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
     ) %>%
+    dplyr::group_by(..., .chain, .iteration, .draw) %>%
+    dplyr::summarise(sim_used = sum(sim_used),
+                     Orders = sum(Orders)) %>%
     dplyr::mutate(value = sim_used / Orders ) %>%
     summarise_spread_draws(
-      ..., data = NULL, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Proportion kits ordered that are used",
       sum_func = percent_func
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   return(out)
 }
@@ -153,24 +178,15 @@ kit_summary_table <- function(fit, ..., data = NULL,
 #'
 #' @return [dplyr::tibble]
 #' @noRd
-summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
+summarise_spread_draws <- function(out, ..., cri_range,
                                    name_label, sum_func) {
 
-  estimate <- NULL
+  estimate <- .chain <- .iteration <- .draw <- value <- NULL
 
   # calculate lower and upper bounds of range
   lb <- 0.5 * (1 - cri_range)
   ub <- 1 - lb
   cri_label <- scales::percent(cri_range)
-
-  # add data if included
-  if (!is.null(data)) {
-    out <- out %>%
-      dplyr::left_join(
-        dplyr::mutate(data, i = dplyr::row_number()),
-        by = "i"
-      )
-  }
 
   # summarize for var_name variable
   out %>%
@@ -215,8 +231,23 @@ print_as_cri <- function(d, accuracy = 0.01,
 
   d %>%
     dplyr::mutate(estimate = glue::glue("{sum_func(e)} ",
-                                 "({cri_label} CrI: {sum_func(lb)} ",
-                                 "- ",
-                                 "{sum_func(ub)})")) %>%
+                                        "({cri_label} CrI: {sum_func(lb)} ",
+                                        "- ",
+                                        "{sum_func(ub)})")) %>%
     dplyr::select(-e,-lb,-ub)
+}
+
+
+#' inner join unless intersection of colnames is empty and then bind by column
+#' instead (as should be no grouping variable so should just be one row)
+#' @param out first dataframe
+#' @param out2 second dataframe
+#' @return [tibble::tibble]
+#' @noRd
+join_and_merge <- function(out,out2){
+  if(length(intersect(colnames(out),colnames(out2))) == 0){
+    return(dplyr::bind_cols(out,out2))
+  }
+
+  return(dplyr::inner_join(out,out2))
 }

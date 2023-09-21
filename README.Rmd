@@ -63,6 +63,12 @@ mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
 
+An overall summary of the model output can also be provided as a datframe
+
+```{r, warning=FALSE}
+kit_summary_table(fit, data = d)
+```
+
 ## Getting help
 
 If you encounter a clear bug, please file an issue with a minimal reproducible example on [GitHub](https://github.com/sempwn/bennu/issues). 

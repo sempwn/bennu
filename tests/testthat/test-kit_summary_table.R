@@ -10,6 +10,11 @@ test_that("kit_summary_table can group by regions and times", {
   testthat::expect_type(out,"list")
 })
 
+test_that("kit_summary_table with no groupings", {
+  out <- kit_summary_table(fit, data = d)
+  testthat::expect_type(out,"list")
+})
+
 test_that("kit_summary_table prints correct CrI", {
   out <- kit_summary_table(fit, regions,
                            data = d,accuracy = 1,

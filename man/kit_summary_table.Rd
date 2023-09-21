@@ -4,7 +4,14 @@
 \alias{kit_summary_table}
 \title{Summarize model fit}
 \usage{
-kit_summary_table(fit, ..., data = NULL, accuracy = 0.01, cri_range = 0.95)
+kit_summary_table(
+  fit,
+  ...,
+  data = NULL,
+  accuracy = 0.01,
+  cri_range = 0.95,
+  ndraws = NULL
+)
 }
 \arguments{
 \item{fit}{\link{stanfit} object}
@@ -20,6 +27,8 @@ ensure breaks have the minimum number of digits needed to show the
 difference between adjacent values.}
 
 \item{cri_range}{The range of the credible interval e.g. 0.95}
+
+\item{ndraws}{Number of draws to use in estimate}
 }
 \value{
 A \link[tibble:tibble]{tibble::tibble}
