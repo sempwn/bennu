@@ -75,6 +75,23 @@ mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
+An overall summary of the model output can also be provided as a
+datframe
+
+``` r
+kit_summary_table(fit, data = d)
+#> # A tibble: 1 × 6
+#>   Probability of kit use if dist…¹ Estimated as distrib…² Proportion kits dist…³
+#>   <glue>                           <glue>                 <glue>                
+#> 1 65.34% (95% CrI: 18.31% - 96.36… 24,909.00 (95% CrI: 2… 58.72% (95% CrI: 58.1…
+#> # ℹ abbreviated names: ¹​`Probability of kit use if distributed`,
+#> #   ²​`Estimated as distributed`,
+#> #   ³​`Proportion kits distributed that are reported`
+#> # ℹ 3 more variables: `Estimated kits used` <glue>,
+#> #   `Proportion kits used that are reported` <glue>,
+#> #   `Proportion kits ordered that are used` <glue>
+```
+
 ## Getting help
 
 If you encounter a clear bug, please file an issue with a minimal

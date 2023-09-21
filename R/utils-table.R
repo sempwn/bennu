@@ -19,6 +19,7 @@
 #' ensure breaks have the minimum number of digits needed to show the
 #' difference between adjacent values.
 #' @param cri_range The range of the credible interval e.g. 0.95
+#' @param ndraws Number of draws to use in estimate
 #' @return A [tibble::tibble]
 #' \itemize{
 #'   \item{Probability of kit use if distributed}
@@ -37,7 +38,8 @@
 #' }
 #' @family plots
 kit_summary_table <- function(fit, ..., data = NULL,
-                              accuracy = 0.01, cri_range = 0.95) {
+                              accuracy = 0.01, cri_range = 0.95,
+                              ndraws = NULL) {
 
 
 
@@ -49,7 +51,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
 
   # probability of kit used if distributed
   out <- fit %>%
-    tidybayes::spread_draws(sim_p[i]) %>%
+    tidybayes::spread_draws(sim_p[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
@@ -63,7 +65,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
 
   # total distributed
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(Distributed[i]) %>%
+    tidybayes::spread_draws(Distributed[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
@@ -78,11 +80,11 @@ kit_summary_table <- function(fit, ..., data = NULL,
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # percentage of kits distributed that are reported
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(Distributed[i]) %>%
+    tidybayes::spread_draws(Distributed[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
@@ -98,11 +100,11 @@ kit_summary_table <- function(fit, ..., data = NULL,
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # estimated kits used
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(sim_used[i]) %>%
+    tidybayes::spread_draws(sim_used[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
@@ -117,11 +119,11 @@ kit_summary_table <- function(fit, ..., data = NULL,
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # percentage of kits used that are reported
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(sim_used[i]) %>%
+    tidybayes::spread_draws(sim_used[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
@@ -137,11 +139,11 @@ kit_summary_table <- function(fit, ..., data = NULL,
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   # percentage of kits ordered that are used
   data_var_summary <- fit %>%
-    tidybayes::spread_draws(sim_used[i]) %>%
+    tidybayes::spread_draws(sim_used[i], ndraws = ndraws) %>%
     dplyr::left_join(
       dplyr::mutate(data, i = dplyr::row_number()),
       by = "i"
@@ -157,7 +159,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
     )
 
   out <- out %>%
-    dplyr::inner_join(data_var_summary)
+    join_and_merge(data_var_summary)
 
   return(out)
 }
@@ -233,4 +235,19 @@ print_as_cri <- function(d, accuracy = 0.01,
                                         "- ",
                                         "{sum_func(ub)})")) %>%
     dplyr::select(-e,-lb,-ub)
+}
+
+
+#' inner join unless intersection of colnames is empty and then bind by column
+#' instead (as should be no grouping variable so should just be one row)
+#' @param out first dataframe
+#' @param out2 second dataframe
+#' @return [tibble::tibble]
+#' @noRd
+join_and_merge <- function(out,out2){
+  if(length(intersect(colnames(out),colnames(out2))) == 0){
+    return(dplyr::bind_cols(out,out2))
+  }
+
+  return(dplyr::inner_join(out,out2))
 }
