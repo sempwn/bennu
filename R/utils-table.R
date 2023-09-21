@@ -1,5 +1,3 @@
-
-
 #' Summarize model fit
 #'
 #' @description
@@ -52,9 +50,13 @@ kit_summary_table <- function(fit, ..., data = NULL,
   # probability of kit used if distributed
   out <- fit %>%
     tidybayes::spread_draws(sim_p[i]) %>%
+    dplyr::left_join(
+      dplyr::mutate(data, i = dplyr::row_number()),
+      by = "i"
+    ) %>%
     dplyr::rename("value" = "sim_p") %>%
     summarise_spread_draws(
-      ..., data = data, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Probability of kit use if distributed",
       sum_func = percent_func
     )
@@ -62,11 +64,15 @@ kit_summary_table <- function(fit, ..., data = NULL,
   # total distributed
   data_var_summary <- fit %>%
     tidybayes::spread_draws(Distributed[i]) %>%
+    dplyr::left_join(
+      dplyr::mutate(data, i = dplyr::row_number()),
+      by = "i"
+    ) %>%
     dplyr::rename("value" = "Distributed") %>%
     dplyr::group_by(..., .chain, .iteration, .draw) %>%
     dplyr::summarise(value = sum(value)) %>%
     summarise_spread_draws(
-      ..., data = data, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Estimated as distributed",
       sum_func = comma_func
     )
@@ -86,7 +92,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
                      Distributed = sum(Distributed)) %>%
     dplyr::mutate(value = Reported_Distributed / Distributed) %>%
     summarise_spread_draws(
-      ..., data = NULL, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Proportion kits distributed that are reported",
       sum_func = percent_func
     )
@@ -97,11 +103,15 @@ kit_summary_table <- function(fit, ..., data = NULL,
   # estimated kits used
   data_var_summary <- fit %>%
     tidybayes::spread_draws(sim_used[i]) %>%
+    dplyr::left_join(
+      dplyr::mutate(data, i = dplyr::row_number()),
+      by = "i"
+    ) %>%
     dplyr::rename("value" = "sim_used") %>%
     dplyr::group_by(..., .chain, .iteration, .draw) %>%
     dplyr::summarise(value = sum(value)) %>%
     summarise_spread_draws(
-      ..., data = data, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Estimated kits used",
       sum_func = comma_func
     )
@@ -121,7 +131,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
                      sim_used = sum(sim_used)) %>%
     dplyr::mutate(value = Reported_Used / sim_used) %>%
     summarise_spread_draws(
-      ..., data = NULL, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Proportion kits used that are reported",
       sum_func = percent_func
     )
@@ -141,7 +151,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
                      Orders = sum(Orders)) %>%
     dplyr::mutate(value = sim_used / Orders ) %>%
     summarise_spread_draws(
-      ..., data = NULL, cri_range = cri_range,
+      ..., cri_range = cri_range,
       name_label = "Proportion kits ordered that are used",
       sum_func = percent_func
     )
@@ -166,7 +176,7 @@ kit_summary_table <- function(fit, ..., data = NULL,
 #'
 #' @return [dplyr::tibble]
 #' @noRd
-summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
+summarise_spread_draws <- function(out, ..., cri_range,
                                    name_label, sum_func) {
 
   estimate <- .chain <- .iteration <- .draw <- value <- NULL
@@ -175,15 +185,6 @@ summarise_spread_draws <- function(out, ..., data = NULL, cri_range,
   lb <- 0.5 * (1 - cri_range)
   ub <- 1 - lb
   cri_label <- scales::percent(cri_range)
-
-  # add data if included
-  if (!is.null(data)) {
-    out <- out %>%
-      dplyr::left_join(
-        dplyr::mutate(data, i = dplyr::row_number()),
-        by = "i"
-      )
-  }
 
   # summarize for var_name variable
   out %>%
@@ -228,8 +229,8 @@ print_as_cri <- function(d, accuracy = 0.01,
 
   d %>%
     dplyr::mutate(estimate = glue::glue("{sum_func(e)} ",
-                                 "({cri_label} CrI: {sum_func(lb)} ",
-                                 "- ",
-                                 "{sum_func(ub)})")) %>%
+                                        "({cri_label} CrI: {sum_func(lb)} ",
+                                        "- ",
+                                        "{sum_func(ub)})")) %>%
     dplyr::select(-e,-lb,-ub)
 }
