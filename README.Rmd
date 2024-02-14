@@ -63,7 +63,7 @@ mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
            off_diag_args = list(size = 1, alpha = 0.5))
 ```
 
-An overall summary of the model output can also be provided as a datframe
+An overall summary of the model output can also be provided as a data frame
 
 ```{r, warning=FALSE}
 kit_summary_table(fit, data = d)
