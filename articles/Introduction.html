@@ -99,7 +99,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan/" class="external-link">rstan</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: StanHeaders</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; rstan version 2.26.23 (Stan version 2.26.1)</span></span>
+<span><span class="co">#&gt; rstan version 2.32.5 (Stan version 2.32.2)</span></span>
 <span><span class="co">#&gt; For execution on a local, multicore CPU with excess RAM we recommend calling</span></span>
 <span><span class="co">#&gt; options(mc.cores = parallel::detectCores()).</span></span>
 <span><span class="co">#&gt; To avoid recompilation of unchanged Stan programs, we recommend calling</span></span>
@@ -109,7 +109,7 @@
 <span><span class="co">#&gt; rstan_options(threads_per_chain = 1)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sempwn.github.io/bennu/">bennu</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot/" class="external-link">bayesplot</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; This is bayesplot version 1.10.0</span></span>
+<span><span class="co">#&gt; This is bayesplot version 1.11.0</span></span>
 <span><span class="co">#&gt; - Online documentation and vignettes at mc-stan.org/bayesplot</span></span>
 <span><span class="co">#&gt; - bayesplot theme set to bayesplot::theme_default()</span></span>
 <span><span class="co">#&gt;    * Does _not_ affect other ggplot2 plots</span></span>
@@ -127,7 +127,7 @@
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="co"># note iter should be at least 2000 to generate a reasonable posterior sample</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>, iter <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please explicitly name `id_cols`, like `id_cols = regions`.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">bennu</span> package.</span></span>
@@ -135,7 +135,7 @@
 <span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
-<span><span class="co">#&gt; Warning: There were 24 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 28 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
 <span><span class="co">#&gt; Warning: There were 2 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
@@ -150,13 +150,15 @@
 <span><span class="co">#&gt; Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.</span></span>
 <span><span class="co">#&gt; Running the chains for more iterations may help. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#tail-ess</span></span>
-<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">fit</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>,<span class="st">"mu0"</span>,<span class="st">"zeta"</span><span class="op">)</span>,</span>
-<span>           off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">fit</span>,</span>
+<span>  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>, <span class="st">"mu0"</span>, <span class="st">"zeta"</span><span class="op">)</span>,</span>
+<span>  off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/run%20example%20model-1.png" width="700"></p>
 <p>Return median and 90th percentiles for posterior samples</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/posterior/" class="external-link">posterior</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; This is posterior version 1.4.1</span></span>
+<span><span class="co">#&gt; This is posterior version 1.5.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'posterior'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:bayesplot':</span></span>
@@ -174,33 +176,43 @@
 <span></span>
 <span><span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">summarise_draws</a></span><span class="op">(</span><span class="va">fit</span>, <span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">default_summary_measures</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 462 × 7</span></span></span>
-<span><span class="co">#&gt;    variable  mean median    sd   mad    q5    q95</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span> <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;num&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]  -<span style="color: #BB0000;">1.37</span>  -<span style="color: #BB0000;">1.40</span> 0.503 0.526 -<span style="color: #BB0000;">2.20</span> -<span style="color: #BB0000;">0.481</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]  -<span style="color: #BB0000;">1.37</span>  -<span style="color: #BB0000;">1.37</span> 0.434 0.429 -<span style="color: #BB0000;">2.03</span> -<span style="color: #BB0000;">0.692</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]  -<span style="color: #BB0000;">1.38</span>  -<span style="color: #BB0000;">1.34</span> 0.322 0.326 -<span style="color: #BB0000;">1.88</span> -<span style="color: #BB0000;">0.837</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]  -<span style="color: #BB0000;">1.43</span>  -<span style="color: #BB0000;">1.43</span> 0.247 0.249 -<span style="color: #BB0000;">1.89</span> -<span style="color: #BB0000;">1.06</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]  -<span style="color: #BB0000;">1.26</span>  -<span style="color: #BB0000;">1.26</span> 0.204 0.212 -<span style="color: #BB0000;">1.58</span> -<span style="color: #BB0000;">0.880</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]  -<span style="color: #BB0000;">1.30</span>  -<span style="color: #BB0000;">1.31</span> 0.274 0.207 -<span style="color: #BB0000;">1.74</span> -<span style="color: #BB0000;">0.846</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]  -<span style="color: #BB0000;">1.36</span>  -<span style="color: #BB0000;">1.34</span> 0.175 0.194 -<span style="color: #BB0000;">1.63</span> -<span style="color: #BB0000;">1.08</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]  -<span style="color: #BB0000;">1.37</span>  -<span style="color: #BB0000;">1.32</span> 0.260 0.217 -<span style="color: #BB0000;">1.83</span> -<span style="color: #BB0000;">1.03</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]  -<span style="color: #BB0000;">1.43</span>  -<span style="color: #BB0000;">1.43</span> 0.177 0.177 -<span style="color: #BB0000;">1.76</span> -<span style="color: #BB0000;">1.17</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10] -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.22</span> 0.301 0.241 -<span style="color: #BB0000;">1.70</span> -<span style="color: #BB0000;">0.744</span></span></span>
+<span><span class="co">#&gt;    variable  mean median    sd    mad    q5    q95</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]  -<span style="color: #BB0000;">2.07</span>  -<span style="color: #BB0000;">2.07</span> 0.572 0.626  -<span style="color: #BB0000;">3.05</span> -<span style="color: #BB0000;">1.14</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]  -<span style="color: #BB0000;">1.99</span>  -<span style="color: #BB0000;">1.94</span> 0.516 0.526  -<span style="color: #BB0000;">2.91</span> -<span style="color: #BB0000;">1.18</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]  -<span style="color: #BB0000;">1.80</span>  -<span style="color: #BB0000;">1.78</span> 0.391 0.414  -<span style="color: #BB0000;">2.52</span> -<span style="color: #BB0000;">1.18</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]  -<span style="color: #BB0000;">1.77</span>  -<span style="color: #BB0000;">1.81</span> 0.386 0.351  -<span style="color: #BB0000;">2.41</span> -<span style="color: #BB0000;">1.18</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]  -<span style="color: #BB0000;">1.71</span>  -<span style="color: #BB0000;">1.72</span> 0.199 0.233  -<span style="color: #BB0000;">2.03</span> -<span style="color: #BB0000;">1.43</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]  -<span style="color: #BB0000;">1.34</span>  -<span style="color: #BB0000;">1.36</span> 0.144 0.151  -<span style="color: #BB0000;">1.54</span> -<span style="color: #BB0000;">1.11</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]  -<span style="color: #BB0000;">1.42</span>  -<span style="color: #BB0000;">1.40</span> 0.156 0.141  -<span style="color: #BB0000;">1.67</span> -<span style="color: #BB0000;">1.16</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]  -<span style="color: #BB0000;">1.32</span>  -<span style="color: #BB0000;">1.35</span> 0.316 0.267  -<span style="color: #BB0000;">1.80</span> -<span style="color: #BB0000;">0.715</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]  -<span style="color: #BB0000;">1.14</span>  -<span style="color: #BB0000;">1.15</span> 0.112 0.091<span style="text-decoration: underline;">5</span> -<span style="color: #BB0000;">1.33</span> -<span style="color: #BB0000;">0.964</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10] -<span style="color: #BB0000;">1.10</span>  -<span style="color: #BB0000;">1.10</span> 0.111 0.118  -<span style="color: #BB0000;">1.26</span> -<span style="color: #BB0000;">0.921</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 452 more rows</span></span></span></code></pre></div>
-<p>We can compare two different model fits of the probability of prior
-kit use to simulated data using the <code>plot_kit_use</code>
-function</p>
+<p>We can plot the posterior predictive distribution of the probability
+of prior kit use and compare to simulated data using the
+<code>plot_kit_use</code> function</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">fit</span>,data<span class="op">=</span><span class="va">d</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">fit</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/plot%20draws-1.png" width="700"></p>
+<p>Alternatively, if we only want to plot certain regions we can include
+that as an optional argument in the <code>plot_kit_use</code>
+function</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span></span>
+<span>  model <span class="op">=</span> <span class="va">fit</span>, data <span class="op">=</span> <span class="va">d</span>,</span>
+<span>  regions_to_plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="Introduction_files/figure-html/plot%20draws%20filter%20regions-1.png" width="700"></p>
 <p>We can compare the posterior predictive check to the prior predictive
 check by re-running the model without the likelihood by setting the
 <code>run_estimation</code> parameter to <code>FALSE</code></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># note iter should be at least 2000 to generate a reasonable posterior sample</span></span>
 <span><span class="va">prior_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,</span>
-<span>                          run_estimation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                          iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
+<span>  run_estimation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  iter <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: There were 10 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
@@ -218,14 +230,16 @@ check by re-running the model without the likelihood by setting the
 <span><span class="co">#&gt; Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.</span></span>
 <span><span class="co">#&gt; Running the chains for more iterations may help. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#tail-ess</span></span>
-<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">prior_fit</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>,<span class="st">"mu0"</span>,<span class="st">"zeta"</span><span class="op">)</span>,</span>
-<span>           off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">prior_fit</span>,</span>
+<span>  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>, <span class="st">"mu0"</span>, <span class="st">"zeta"</span><span class="op">)</span>,</span>
+<span>  off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/run%20prior-1.png" width="700"></p>
 <p>We can compare the prior and posterior predictive distribution of the
 probability of prior kit use using the <code>plot_kit_use</code>
 function</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>prior <span class="op">=</span> <span class="va">prior_fit</span>,posterior <span class="op">=</span> <span class="va">fit</span>, data<span class="op">=</span><span class="va">d</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>prior <span class="op">=</span> <span class="va">prior_fit</span>, posterior <span class="op">=</span> <span class="va">fit</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/plot%20compare%20prior%20posterior-1.png" width="700"></p>
 <div class="section level2">
 <h2 id="random-walk-of-order-2-model">Random walk of order 2 model<a class="anchor" aria-label="anchor" href="#random-walk-of-order-2-model"></a>
@@ -242,16 +256,17 @@ independent second order increments,</p>
 \sim N(0,\tau^{-1}) \]</span></p>
 <p>This version of the model will produce smoother estimates of
 probability of naloxone use in time.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># note iter should be at least 2000 to generate a reasonable posterior sample</span></span>
 <span><span class="co"># note use `rw_type` to specify order of random walk</span></span>
 <span><span class="va">rw2_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,</span>
-<span>                    rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>                    iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 12 divergent transitions after warmup. See</span></span>
+<span>  rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  iter <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: There were 11 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
+<span><span class="co">#&gt; Warning: There were 2 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
@@ -263,31 +278,33 @@ probability of naloxone use in time.</p>
 <span><span class="co">#&gt; Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.</span></span>
 <span><span class="co">#&gt; Running the chains for more iterations may help. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#tail-ess</span></span>
-<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">rw2_fit</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>,<span class="st">"mu0"</span>,<span class="st">"zeta"</span><span class="op">)</span>,</span>
-<span>           off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">rw2_fit</span>,</span>
+<span>  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>, <span class="st">"mu0"</span>, <span class="st">"zeta"</span><span class="op">)</span>,</span>
+<span>  off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/rw%20order%202%20model-1.png" width="700"></p>
 <p>Summarize random walk order 2 model draws</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">summarise_draws</a></span><span class="op">(</span><span class="va">rw2_fit</span>, <span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">default_convergence_measures</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 462 × 4</span></span></span>
 <span><span class="co">#&gt;    variable  rhat ess_bulk ess_tail</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;num&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]   1.24     14.5     63.8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]   1.25     13.9     52.3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]   1.23     14.8     88.3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]   1.20     17.0     33.3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]   1.16     20.4     73.4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]   1.05     89.2    137. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]   1.07    177.     190. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]   1.21    160.      40.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]   1.14     37.7     48.3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10]  1.14    152.      70.3</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> logp[1]   1.15     21.2     30.9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> logp[2]   1.21     16.1     34.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> logp[3]   1.13     22.6    122. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> logp[4]   1.09     44.5     47.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> logp[5]   1.10    118.     135. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> logp[6]   1.10    115.     191. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> logp[7]   1.08     36.0     30.2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> logp[8]   1.11    181.     158. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> logp[9]   1.07     52.9    136. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> logp[10]  1.17     22.3     21.4</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 452 more rows</span></span></span></code></pre></div>
 <p>We can compare two different model fits of the probability of prior
 kit use to simulated data using the <code>plot_kit_use</code>
 function</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>rw_1 <span class="op">=</span> <span class="va">fit</span>,rw_2 <span class="op">=</span> <span class="va">rw2_fit</span>,data<span class="op">=</span><span class="va">d</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>rw_1 <span class="op">=</span> <span class="va">fit</span>, rw_2 <span class="op">=</span> <span class="va">rw2_fit</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/plot%20draws%20comparison-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -299,22 +316,23 @@ data and the distribution data. The model can account for these
 differences and infer the distribution during missing months. See the
 following example for generating distribution data once every three
 months</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## basic example code</span></span>
 <span><span class="va">d_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_model_data.html">generate_model_data</a></span><span class="op">(</span>reporting_freq <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">times</span>,y<span class="op">=</span><span class="va">Reported_Used</span>,color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span><span class="op">)</span>,data<span class="op">=</span><span class="va">d_missing</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">times</span>, y <span class="op">=</span> <span class="va">Reported_Used</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">d_missing</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 32 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/data%20generation%20lower%20frequency-1.png" width="700"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">missing_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d_missing</span>,</span>
-<span>                    rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>                    iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 14 divergent transitions after warmup. See</span></span>
+<span>  rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  iter <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: There were 10 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
-<span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
 <span><span class="co">#&gt; Running the chains for more iterations may help. See</span></span>
@@ -325,11 +343,13 @@ months</p>
 <span><span class="co">#&gt; Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.</span></span>
 <span><span class="co">#&gt; Running the chains for more iterations may help. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#tail-ess</span></span>
-<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">missing_fit</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>,<span class="st">"mu0"</span>,<span class="st">"zeta"</span><span class="op">)</span>,</span>
-<span>           off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-scatterplots.html" class="external-link">mcmc_pairs</a></span><span class="op">(</span><span class="va">missing_fit</span>,</span>
+<span>  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sigma"</span>, <span class="st">"mu0"</span>, <span class="st">"zeta"</span><span class="op">)</span>,</span>
+<span>  off_diag_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/missing%20data%20inference-1.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">missing_fit</span>, data<span class="op">=</span><span class="va">d_missing</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_kit_use.html">plot_kit_use</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">missing_fit</span>, data <span class="op">=</span> <span class="va">d_missing</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/plot%20draws%20with%20missing%20data-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -352,11 +372,11 @@ be expanded into months through interpolation and normalization to
 retain its property as a probability distribution. Example code (not
 run) is shown below. Note that these distributions will need to be
 updated when considering another jurisdiction,</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># monthly reporting delay distribution</span></span>
 <span><span class="va">psi_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="co"># convert to weeks using interpolation</span></span>
-<span><span class="va">weekly_psi_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">psi_vec</span>,<span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">psi_vec</span><span class="op">)</span></span>
+<span><span class="va">weekly_psi_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">psi_vec</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">psi_vec</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># properties of order to distributed delay distribution in months</span></span>
 <span><span class="va">max_delays</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
@@ -364,15 +384,16 @@ updated when considering another jurisdiction,</p>
 <span><span class="va">delay_beta</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span></span>
 <span><span class="co"># convert to weeks</span></span>
-<span><span class="va">weekly_max_delays</span> <span class="op">&lt;-</span> <span class="va">max_delays</span><span class="op">*</span><span class="fl">4</span></span>
+<span><span class="va">weekly_max_delays</span> <span class="op">&lt;-</span> <span class="va">max_delays</span> <span class="op">*</span> <span class="fl">4</span></span>
 <span><span class="va">weekly_delay_alpha</span> <span class="op">&lt;-</span> <span class="va">delay_alpha</span></span>
-<span><span class="va">weekly_delay_beta</span> <span class="op">&lt;-</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="va">delay_beta</span> </span>
+<span><span class="va">weekly_delay_beta</span> <span class="op">&lt;-</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="va">delay_beta</span></span>
 <span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>,</span>
-<span> psi_vec <span class="op">=</span> <span class="va">weekly_psi_vec</span>,</span>
-<span> max_delays <span class="op">=</span> <span class="va">weekly_max_delays</span>,</span>
-<span> delay_alpha <span class="op">=</span> <span class="va">weekly_delay_alpha</span>,</span>
-<span> delay_beta <span class="op">=</span> <span class="va">weekly_delay_beta</span><span class="op">)</span></span></code></pre></div>
+<span>  psi_vec <span class="op">=</span> <span class="va">weekly_psi_vec</span>,</span>
+<span>  max_delays <span class="op">=</span> <span class="va">weekly_max_delays</span>,</span>
+<span>  delay_alpha <span class="op">=</span> <span class="va">weekly_delay_alpha</span>,</span>
+<span>  delay_beta <span class="op">=</span> <span class="va">weekly_delay_beta</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
