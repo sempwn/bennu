@@ -6,10 +6,14 @@
 #' @param ... named list of [stanfit] objects
 #' @param data data used for model fitting. Can also include `p_use` column
 #' which can be used to plot true values if derived from simulated data.
+#' @param regions_to_plot Optional list to filter which regions are
+#' plotted
 #' @return [ggplot2] object
 #' @export
 #' @family plots
-plot_kit_use <- function(..., data = NULL) {
+plot_kit_use <- function(...,
+                         data = NULL,
+                         regions_to_plot = NULL) {
   combined_plot_data <- combine_model_fits(..., data = data)
 
   region <- model <- times <- sim_p <- p_use <- region_name <- NULL
@@ -18,6 +22,11 @@ plot_kit_use <- function(..., data = NULL) {
   # add true values as NULL if doesn't exist in data
   if (!"p_use" %in% names(combined_plot_data)) {
     combined_plot_data[["p_use"]] <- NA_real_
+  }
+
+  if (!is.null(regions_to_plot)) {
+    combined_plot_data <- combined_plot_data %>%
+      dplyr::filter(region_name %in% regions_to_plot)
   }
 
   combined_plot_data <- combined_plot_data %>%
