@@ -69,7 +69,7 @@ For more details see the introduction vignette:
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_kit_use</span><span class="op">(</span><span class="va">...</span>, data <span class="op">=</span> <span class="cn">NULL</span>, regions_to_plot <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_kit_use</span><span class="op">(</span><span class="va">...</span>, data <span class="op">=</span> <span class="cn">NULL</span>, reported <span class="op">=</span> <span class="cn">FALSE</span>, regions_to_plot <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -81,6 +81,11 @@ For more details see the introduction vignette:
 <dt>data</dt>
 <dd><p>data used for model fitting. Can also include <code>p_use</code> column
 which can be used to plot true values if derived from simulated data.</p></dd>
+
+
+<dt>reported</dt>
+<dd><p>if <code>TRUE</code> then produces a plot of the reported kits
+which is equivalent to the predictive check.</p></dd>
 
 
 <dt>regions_to_plot</dt>
