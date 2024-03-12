@@ -4,13 +4,16 @@
 \alias{plot_kit_use}
 \title{Plot of probability of naloxone kit use}
 \usage{
-plot_kit_use(..., data = NULL, regions_to_plot = NULL)
+plot_kit_use(..., data = NULL, reported = FALSE, regions_to_plot = NULL)
 }
 \arguments{
 \item{...}{named list of \link{stanfit} objects}
 
 \item{data}{data used for model fitting. Can also include \code{p_use} column
 which can be used to plot true values if derived from simulated data.}
+
+\item{reported}{if \code{TRUE} then produces a plot of the reported kits
+which is equivalent to the predictive check.}
 
 \item{regions_to_plot}{Optional list to filter which regions are
 plotted}

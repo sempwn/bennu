@@ -14,6 +14,11 @@ test_that("plot three layers if not included data", {
   testthat::expect_equal(nlayers,3)
 })
 
+test_that("Creates ggplot object if using reported argument", {
+  plt <- plot_kit_use(rw_1 = fit, rw_2 = fit, reported = TRUE, data=d)
+  testthat::expect_true(ggplot2::is.ggplot(plt))
+})
+
 test_that("Creates ggplot object", {
   plt <- plot_kit_use(rw_1 = fit, rw_2 = fit, data=d)
   testthat::expect_true(ggplot2::is.ggplot(plt))
