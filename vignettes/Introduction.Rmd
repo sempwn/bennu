@@ -168,6 +168,10 @@ mcmc_pairs(missing_fit,
 plot_kit_use(model = missing_fit, data = d_missing)
 ```
 
+```{r plot reported draws with missing data}
+plot_kit_use(model = missing_fit, data = d_missing, reported = TRUE)
+```
+
 ## Change scale of data
 
 the original model was designed for data aggregated into months. If the order and distribution data is aggregated differently then this can be incorporated into the model by updating the delay in reporting distribution and the delay in ordering to distributing distribution. 

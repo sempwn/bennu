@@ -202,7 +202,7 @@ generated quantities {
   array[N_region, N_t] int Distributed2D;
   array[N] real sim_p;
   array[N_region, N_t] real sim_p2D;
-  array[N] int sim_reported_used;
+  array[N_distributed] int sim_reported_used;
 
   vector[N] sim_actual_used;
 
@@ -236,7 +236,7 @@ generated quantities {
   sim_p = inv_logit(to_array_1d(sim_p2D));
 
   sim_used = binomial_rng(Distributed,sim_p);
-  sim_reported_used = binomial_rng(Reported_Distributed,sim_p);
+  sim_reported_used = binomial_rng(Reported_Distributed,p);
 
 
 

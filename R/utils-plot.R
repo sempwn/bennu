@@ -17,7 +17,8 @@ plot_kit_use <- function(...,
                          data = NULL,
                          reported = FALSE,
                          regions_to_plot = NULL) {
-  combined_plot_data <- combine_model_fits(..., data = data)
+  combined_plot_data <- combine_model_fits(..., data = data,
+                                           reported = reported)
 
   region <- model <- times <- data_var_name <- sim_reported_used <- p_use <- NULL
   region_name <- NULL
@@ -98,24 +99,47 @@ plot_kit_use <- function(...,
 
 #' Combine one of more [stanfit] objects together with data
 #' to also include region and time components
+#' @param ... list of [rstan] fits
+#' @param data data used for model fitting. Can also include `p_use` column
+#' which can be used to plot true values if derived from simulated data.
+#' @param reported if `TRUE` then produces a plot of the reported kits
+#' which is equivalent to the predictive check.
 #' @noRd
-combine_model_fits <- function(..., data = NULL) {
+combine_model_fits <- function(..., data = NULL, reported = FALSE) {
   sim_p <- i <- sim_reported_used <- NULL
 
   fit_list <- list(...)
 
   comparison_tibble <- dplyr::tibble()
   for (model in names(fit_list)) {
-    out <- fit_list[[model]] %>%
-      tidybayes::spread_draws(sim_p[i], sim_reported_used[i]) %>%
+    out <- fit_list[[model]]
+    if(reported){
+      out <- out %>%
+        tidybayes::spread_draws(sim_reported_used[i])
+    } else {
+      out <- out %>%
+        tidybayes::spread_draws(sim_p[i])
+    }
+    out <- out %>%
       dplyr::mutate(model = model)
 
     if (!is.null(data)) {
-      out <- out %>%
-        dplyr::left_join(
-          dplyr::mutate(data, i = dplyr::row_number()),
-          by = "i"
-        )
+      if(reported){
+        out <- out %>%
+          dplyr::left_join(
+            dplyr::mutate(tidyr::drop_na(data, Reported_Used,
+                                         Reported_Distributed),
+                          i = dplyr::row_number()),
+            by = "i"
+          )
+      } else {
+        out <- out %>%
+          dplyr::left_join(
+            dplyr::mutate(data, i = dplyr::row_number()),
+            by = "i"
+          )
+      }
+
     }
 
     comparison_tibble <- dplyr::bind_rows(
