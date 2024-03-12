@@ -24,6 +24,8 @@ est_naloxone_vec(
   iter = 2000,
   seed = 42,
   adapt_delta = 0.85,
+  pars = the$default_outputs,
+  include = TRUE,
   ...
 )
 }
@@ -69,6 +71,18 @@ for each chain (including warmup). The default is 2000.}
 \item{seed}{Seed for random number generation}
 
 \item{adapt_delta}{(double, between 0 and 1, defaults to 0.8)}
+
+\item{pars}{A vector of character strings specifying parameters of interest. 
+    The default is \code{NA} indicating all parameters in the model. 
+    If \code{include = TRUE}, only samples for parameters named in \code{pars} 
+    are stored in the fitted results. Conversely, if \code{include = FALSE}, 
+    samples for all parameters \emph{except} those named in \code{pars} are 
+    stored in the fitted results.}
+
+\item{include}{Logical scalar defaulting to \code{TRUE} indicating
+    whether to include or exclude the parameters given by the 
+    \code{pars} argument. If \code{FALSE}, only entire multidimensional
+    parameters can be excluded, rather than particular elements of them.}
 
 \item{...}{other parameters to pass to \link[rstan:stanmodel-method-sampling]{rstan::sampling}}
 }
