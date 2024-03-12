@@ -48,6 +48,14 @@ kit use and compare to simulated data using the `plot_kit_use` function
 plot_kit_use(model = fit, data = d)
 ```
 
+We can also plot the reported number of kits used along with the posterior
+predictive distribution using the `plot_kit_use` function with the `reported`
+argument set to `TRUE`
+
+```{r plot reported draws}
+plot_kit_use(model = fit, reported = TRUE, data = d)
+```
+
 Alternatively, if we only want to plot certain regions we can include that
 as an optional argument in the `plot_kit_use` function
 
@@ -158,6 +166,10 @@ mcmc_pairs(missing_fit,
 
 ```{r plot draws with missing data}
 plot_kit_use(model = missing_fit, data = d_missing)
+```
+
+```{r plot reported draws with missing data}
+plot_kit_use(model = missing_fit, data = d_missing, reported = TRUE)
 ```
 
 ## Change scale of data

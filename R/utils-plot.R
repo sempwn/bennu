@@ -6,6 +6,8 @@
 #' @param ... named list of [stanfit] objects
 #' @param data data used for model fitting. Can also include `p_use` column
 #' which can be used to plot true values if derived from simulated data.
+#' @param reported if `TRUE` then produces a plot of the reported kits
+#' which is equivalent to the predictive check.
 #' @param regions_to_plot Optional list to filter which regions are
 #' plotted
 #' @return [ggplot2] object
@@ -13,16 +15,29 @@
 #' @family plots
 plot_kit_use <- function(...,
                          data = NULL,
+                         reported = FALSE,
                          regions_to_plot = NULL) {
-  combined_plot_data <- combine_model_fits(..., data = data)
+  combined_plot_data <- combine_model_fits(..., data = data,
+                                           reported = reported)
 
-  region <- model <- times <- sim_p <- p_use <- region_name <- NULL
+  region <- model <- times <- data_var_name <- sim_reported_used <- p_use <- NULL
+  region_name <- NULL
   p50 <- p05 <- p95 <- p25 <- p75 <- NULL
 
-  # add true values as NULL if doesn't exist in data
-  if (!"p_use" %in% names(combined_plot_data)) {
-    combined_plot_data[["p_use"]] <- NA_real_
+  # data variables that can be plotted if they exist
+  if(reported){
+    data_var <- "Reported_Used"
+    model_var <- "sim_reported_used"
+  }else{
+    data_var <- "p_use"
+    model_var <- "sim_p"
   }
+
+  # add true values as NULL if doesn't exist in data
+  if (!data_var %in% names(combined_plot_data)) {
+    combined_plot_data[[data_var]] <- NA_real_
+  }
+
 
   if (!is.null(regions_to_plot)) {
     combined_plot_data <- combined_plot_data %>%
@@ -32,12 +47,12 @@ plot_kit_use <- function(...,
   combined_plot_data <- combined_plot_data %>%
     dplyr::group_by(region_name, model, times) %>%
     dplyr::summarise(
-      p50 = stats::quantile(sim_p, 0.5),
-      p25 = stats::quantile(sim_p, 0.25),
-      p75 = stats::quantile(sim_p, 0.75),
-      p05 = stats::quantile(sim_p, 0.05),
-      p95 = stats::quantile(sim_p, 0.95),
-      p_use = mean(p_use)
+      p50 = stats::quantile(.data[[model_var]], 0.5),
+      p25 = stats::quantile(.data[[model_var]], 0.25),
+      p75 = stats::quantile(.data[[model_var]], 0.75),
+      p05 = stats::quantile(.data[[model_var]], 0.05),
+      p95 = stats::quantile(.data[[model_var]], 0.95),
+      data_var_name = mean(.data[[data_var]])
     )
 
   p_use_plot <- combined_plot_data %>%
@@ -55,9 +70,9 @@ plot_kit_use <- function(...,
       alpha = 0.2
     )
 
-  if ("p_use" %in% names(data)) {
+  if (!is.null(data) && !all(is.na(combined_plot_data$data_var_name))) {
     p_use_plot <- p_use_plot +
-      ggplot2::geom_point(ggplot2::aes(y = p_use, color = region_name))
+      ggplot2::geom_point(ggplot2::aes(y = data_var_name, color = region_name))
   }
 
   if (length(list(...)) > 1) {
@@ -66,32 +81,65 @@ plot_kit_use <- function(...,
   }
 
   p_use_plot <- p_use_plot +
-    ggplot2::scale_y_continuous(labels = scales::percent) +
-    ggplot2::labs(x = "Time", y = "Probability of prior kit use")
+    ggplot2::labs(x = "Time")
+
+  if(reported){
+    p_use_plot <- p_use_plot +
+      ggplot2::labs(y = "Reported prior kit use",
+                    color = "Region",
+                    fill = "Region")
+  }else{
+    p_use_plot <- p_use_plot +
+      ggplot2::scale_y_continuous(labels = scales::percent) +
+      ggplot2::labs(y = "Probability of prior kit use")
+  }
 
   return(p_use_plot)
 }
 
 #' Combine one of more [stanfit] objects together with data
 #' to also include region and time components
+#' @param ... list of [rstan] fits
+#' @param data data used for model fitting. Can also include `p_use` column
+#' which can be used to plot true values if derived from simulated data.
+#' @param reported if `TRUE` then produces a plot of the reported kits
+#' which is equivalent to the predictive check.
 #' @noRd
-combine_model_fits <- function(..., data = NULL) {
-  sim_p <- i <- NULL
+combine_model_fits <- function(..., data = NULL, reported = FALSE) {
+  sim_p <- i <- sim_reported_used <- NULL
 
   fit_list <- list(...)
 
   comparison_tibble <- dplyr::tibble()
   for (model in names(fit_list)) {
-    out <- fit_list[[model]] %>%
-      tidybayes::spread_draws(sim_p[i]) %>%
+    out <- fit_list[[model]]
+    if(reported){
+      out <- out %>%
+        tidybayes::spread_draws(sim_reported_used[i])
+    } else {
+      out <- out %>%
+        tidybayes::spread_draws(sim_p[i])
+    }
+    out <- out %>%
       dplyr::mutate(model = model)
 
     if (!is.null(data)) {
-      out <- out %>%
-        dplyr::left_join(
-          dplyr::mutate(data, i = dplyr::row_number()),
-          by = "i"
-        )
+      if(reported){
+        out <- out %>%
+          dplyr::left_join(
+            dplyr::mutate(tidyr::drop_na(data, Reported_Used,
+                                         Reported_Distributed),
+                          i = dplyr::row_number()),
+            by = "i"
+          )
+      } else {
+        out <- out %>%
+          dplyr::left_join(
+            dplyr::mutate(data, i = dplyr::row_number()),
+            by = "i"
+          )
+      }
+
     }
 
     comparison_tibble <- dplyr::bind_rows(
