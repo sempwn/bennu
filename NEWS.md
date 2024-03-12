@@ -1,5 +1,8 @@
 # bennu (development version)
 
+* `plot_kit_use` can accept `reported` to plot reported kits used with the 
+posterior predictive distribution (#34)
+
 * `kit_summary_table`  changed to provide sum estimates by grouped variables
 as opposed to the percentiles within each group
 
