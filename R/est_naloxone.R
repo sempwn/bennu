@@ -118,10 +118,16 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
       Region_name = region_name,
 
       # // hyperpiors
-      mu0_mu = 0,
-      mu0_sigma = 1,
-      sigma_mu = 0,
-      sigma_sigma = 1
+      c_mu = priors$c$mu,
+      c_sigma = priors$c$sigma,
+      ct0_mu = priors$ct0$mu,
+      ct0_sigma = priors$ct0$sigma,
+      zeta_mu = priors$zeta$mu,
+      zeta_sigma = priors$zeta$sigma,
+      mu0_mu = priors$mu0$mu,
+      mu0_sigma = priors$mu0$sigma,
+      sigma_mu = priors$sigma$mu,
+      sigma_sigma = priors$sigma$sigma
     )
 
   fit <- rstan::sampling(

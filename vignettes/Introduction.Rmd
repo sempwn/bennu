@@ -90,6 +90,34 @@ probability of prior kit use using the `plot_kit_use` function
 plot_kit_use(prior = prior_fit, posterior = fit, data = d)
 ```
 
+## Incorporating different priors
+
+The default priors for the model are set to be weakly uninformative.
+To change the default priors we can specify a `list` as follows. Note
+that `c` is the prior of the region coefficients, `mu0` is the intercept,
+`ct0` is the initial conditions of the random walk, `zeta` is the standard 
+deviation of the random walk, and `sigma` is the standard deviation of the 
+error. In this example let's set the variation month to month to be smaller
+by setting the standard deviation of the prior for `zeta` to 0.01.
+
+```{r nondefault prior}
+nondefault_priors <- list(
+  c = list(mu = 0, sigma = 1),
+  ct0 = list(mu = 0, sigma = 1),
+  zeta = list(mu = 0, sigma = 0.01),
+  mu0 = list(mu = 0, sigma = 1),
+  sigma = list(mu = 0, sigma = 1)
+)
+nondefault_prior_fit <- est_naloxone(d, iter = 100, priors = nondefault_priors)
+```
+
+Compare the posterior using non-default priors to the posterior for
+default priors,
+
+```{r plot compare prior posterior nondefault prior}
+plot_kit_use(`Default prior` = fit,
+             `Non-default prior` = nondefault_prior_fit, data = d)
+```
 
 ## Random walk of order 2 model
 

@@ -105,11 +105,21 @@ data {
   // vector (time, HSDA) reported as used
   array[N_distributed] int Reported_Used;
 
-  //hyper-priors
+  // hyper-priors
+  // hyper-priors for sigma
+  real<lower=0> c_sigma;
+  real<lower=0> ct0_sigma;
+  real<lower=0> zeta_sigma;
   real<lower=0> mu0_sigma;
   real<lower=0> sigma_sigma;
+
+  // hyper priors for mu
+  real c_mu;
+  real ct0_mu;
+  real zeta_mu;
   real mu0_mu;
   real sigma_mu;
+
 
 }
 
@@ -168,9 +178,9 @@ model {
   sigma ~ normal(sigma_mu,sigma_sigma);
 
   // set priors for covariates
-  c ~ normal(0,1);
-  ct[1] ~ normal(0,1);
-  zeta ~ normal(0,1); // random walk variance
+  c ~ normal(c_mu,c_sigma);
+  ct[1] ~ normal(ct0_mu,ct0_sigma);
+  zeta ~ normal(zeta_mu,zeta_sigma); // random walk variance
 
   if(rw_type == 1){
     for(i in 2:N_t){
