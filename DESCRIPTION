@@ -21,6 +21,7 @@ Depends:
     R (>= 3.4.0)
 Imports: 
     dplyr,
+    generics,
     ggplot2,
     glue,
     lifecycle,
