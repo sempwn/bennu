@@ -1,5 +1,7 @@
 # bennu (development version)
 
+* `est_naloxone` can accept `priors` to change the default model priors (#38)
+
 * `plot_kit_use` can accept `reported` to plot reported kits used with the 
 posterior predictive distribution (#34)
 
