@@ -83,6 +83,8 @@
 <span>  iter <span class="op">=</span> <span class="fl">2000</span>,</span>
 <span>  seed <span class="op">=</span> <span class="fl">42</span>,</span>
 <span>  adapt_delta <span class="op">=</span> <span class="fl">0.85</span>,</span>
+<span>  pars <span class="op">=</span> <span class="va">the</span><span class="op">$</span><span class="va">default_outputs</span>,</span>
+<span>  include <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -167,6 +169,22 @@ for each chain (including warmup). The default is 2000.</p></dd>
 
 <dt>adapt_delta</dt>
 <dd><p>(double, between 0 and 1, defaults to 0.8)</p></dd>
+
+
+<dt>pars</dt>
+<dd><p>A vector of character strings specifying parameters of interest. 
+    The default is <code>NA</code> indicating all parameters in the model. 
+    If <code>include = TRUE</code>, only samples for parameters named in <code>pars</code> 
+    are stored in the fitted results. Conversely, if <code>include = FALSE</code>, 
+    samples for all parameters <em>except</em> those named in <code>pars</code> are 
+    stored in the fitted results.</p></dd>
+
+
+<dt>include</dt>
+<dd><p>Logical scalar defaulting to <code>TRUE</code> indicating
+    whether to include or exclude the parameters given by the 
+    <code>pars</code> argument. If <code>FALSE</code>, only entire multidimensional
+    parameters can be excluded, rather than particular elements of them.</p></dd>
 
 
 <dt>...</dt>
