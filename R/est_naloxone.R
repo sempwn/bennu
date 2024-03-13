@@ -1,3 +1,10 @@
+# default outputs of model to save
+the$default_outputs <- c(
+  "sim_p", "sim_used", "sim_reported_used", "c", "ct",
+  "sigma", "zeta", "mu0", "Distributed"
+)
+
+
 
 #' Run Bayesian estimation of naloxone number under-reporting
 #'
@@ -27,6 +34,7 @@
 #' @param seed Seed for random number generation
 #' @param adapt_delta (double, between 0 and 1, defaults to 0.8)
 #' @param ... other parameters to pass to [rstan::sampling]
+#' @inheritParams rstan::sampling
 #' @family inference
 #' @return An S4 [rstan::stanfit] class object containing the fitted model
 #' @export
@@ -44,6 +52,8 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
                              iter = 2000,
                              seed = 42,
                              adapt_delta = 0.85,
+                             pars = the$default_outputs,
+                             include = TRUE,
                              ...) {
   Orders <- as.vector(t(Orders2D))
 
@@ -107,6 +117,8 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
     seed = seed, # fix seed to recreate results
     control = list(adapt_delta = adapt_delta),
     chains = chains,
+    pars = pars,
+    include = include,
     ...
   )
   return(fit)
@@ -156,6 +168,8 @@ est_naloxone <- function(d,
                          iter = 2000,
                          seed = 42,
                          adapt_delta = 0.85,
+                         pars = the$default_outputs,
+                         include = TRUE,
                          ...) {
   Orders <- NULL
 
@@ -211,6 +225,8 @@ est_naloxone <- function(d,
     iter = iter,
     seed = seed,
     adapt_delta = adapt_delta,
+    pars = pars,
+    include = include,
     ...
   )
 
