@@ -4,6 +4,15 @@ the$default_outputs <- c(
   "sigma", "zeta", "mu0", "Distributed"
 )
 
+# default prior values
+the$default_priors <- list(
+  c = list(mu = 0, sigma = 1),
+  ct0 = list(mu = 0, sigma = 1),
+  zeta = list(mu = 0, sigma = 1),
+  mu0 = list(mu = 0, sigma = 1),
+  sigma = list(mu = 0, sigma = 1)
+)
+
 
 
 #' Run Bayesian estimation of naloxone number under-reporting
@@ -24,6 +33,8 @@ the$default_outputs <- c(
 #' @param delay_alpha shape parameter for order to distributed delay
 #' distribution
 #' @param delay_beta shape parameter for order to distributed delay distribution
+#' @param priors list of prior values including their mean (mu) and standard
+#'   deviation (sigma)
 #' @param run_estimation if `TRUE` will sample from posterior otherwise will
 #' sample from prior only
 #' @param rw_type `1` - random walk of order one. `2` - random walk of order 2.
@@ -46,6 +57,7 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
                              max_delays = 3,
                              delay_alpha = 2,
                              delay_beta = 1,
+                             priors = the$default_priors,
                              run_estimation = TRUE,
                              rw_type = 1,
                              chains = 4,
@@ -55,6 +67,8 @@ est_naloxone_vec <- function(N_region, N_t, N_distributed, regions,
                              pars = the$default_outputs,
                              include = TRUE,
                              ...) {
+  check_prior_format(priors)
+
   Orders <- as.vector(t(Orders2D))
 
   stan_data <-
@@ -162,6 +176,7 @@ est_naloxone <- function(d,
                          max_delays = 3,
                          delay_alpha = 2,
                          delay_beta = 1,
+                         priors = the$default_priors,
                          run_estimation = TRUE,
                          rw_type = 1,
                          chains = 4,
@@ -219,6 +234,7 @@ est_naloxone <- function(d,
     max_delays = max_delays,
     delay_alpha = delay_alpha,
     delay_beta = delay_beta,
+    priors = priors,
     run_estimation = run_estimation,
     rw_type = rw_type,
     chains = chains,
@@ -231,4 +247,18 @@ est_naloxone <- function(d,
   )
 
   return(obj)
+}
+
+#' check that the format of the priors matches with the default priors
+#' @noRd
+check_prior_format <- function(priors) {
+  if (!generics::setequal(
+    names(the$default_priors),
+    names(priors)
+  )) {
+    missing_priors <- generics::setdiff(names(the$default_priors),
+                                        names(priors))
+    stop("Not all prior values defined. Missing priors are: ",
+         paste(missing_priors, collapse = ", "))
+  }
 }

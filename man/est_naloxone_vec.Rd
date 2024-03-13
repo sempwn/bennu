@@ -18,6 +18,7 @@ est_naloxone_vec(
   max_delays = 3,
   delay_alpha = 2,
   delay_beta = 1,
+  priors = the$default_priors,
   run_estimation = TRUE,
   rw_type = 1,
   chains = 4,
@@ -56,6 +57,9 @@ est_naloxone_vec(
 distribution}
 
 \item{delay_beta}{shape parameter for order to distributed delay distribution}
+
+\item{priors}{list of prior values including their mean (mu) and standard
+deviation (sigma)}
 
 \item{run_estimation}{if \code{TRUE} will sample from posterior otherwise will
 sample from prior only}
