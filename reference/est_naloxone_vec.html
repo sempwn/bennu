@@ -77,6 +77,7 @@
 <span>  max_delays <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  delay_alpha <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  delay_beta <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  priors <span class="op">=</span> <span class="va">the</span><span class="op">$</span><span class="va">default_priors</span>,</span>
 <span>  run_estimation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  rw_type <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  chains <span class="op">=</span> <span class="fl">4</span>,</span>
@@ -142,6 +143,11 @@ distribution</p></dd>
 
 <dt>delay_beta</dt>
 <dd><p>shape parameter for order to distributed delay distribution</p></dd>
+
+
+<dt>priors</dt>
+<dd><p>list of prior values including their mean (mu) and standard
+deviation (sigma)</p></dd>
 
 
 <dt>run_estimation</dt>
