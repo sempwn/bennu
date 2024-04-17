@@ -47,7 +47,9 @@ Suggests:
     bayesplot,
     covr,
     knitr,
+    latex2exp,
     posterior,
+    progress,
     rmarkdown,
     stringr,
     testthat (>= 3.0.0)

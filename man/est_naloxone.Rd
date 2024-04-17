@@ -89,7 +89,14 @@ rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores(logical = FALSE))
 
 d <- generate_model_data()
-fit <- est_naloxone(d, iter = 100, chains = 1)
+priors <- list(
+  c = list(mu = 0, sigma = 1),
+  ct0 = list(mu = 0, sigma = 1),
+  zeta = list(mu = 0, sigma = 1),
+  mu0 = list(mu = 0, sigma = 1),
+  sigma = list(mu = 0, sigma = 1)
+  )
+fit <- est_naloxone(d, priors = priors, iter = 100, chains = 1)
 mcmc_pairs(fit,
   pars = c("sigma", "mu0"),
   off_diag_args = list(size = 1, alpha = 0.5)

@@ -18,7 +18,6 @@ library(ggplot2)
 library(tidyr)
 library(progress)
 library(here)
-library(latex2exp)
 
 rstan::rstan_options(auto_write = TRUE)
 options(mc.cores = 4)
@@ -70,5 +69,5 @@ for(i in 1:nrow(experiments)){
   pb$tick()
 }
 
-experimental_validation_data %>% usethis::use_data()
+usethis::use_data(experimental_validation_data)
 
