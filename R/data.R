@@ -13,6 +13,7 @@
 #'   \item{experiment}{Experiment number index}
 #' }
 #' @backref data-raw/create_validation_data.R
+#' @family validation data
 "experimental_validation_data"
 
 #' Missing data experimental validation results
@@ -28,4 +29,5 @@
 #'   \item{reporting_freq}{The reporting frequency in months}
 #' }
 #' @backref data-raw/create_missing_data_validation.R
+#' @family validation data
 "missing_data_validation"
