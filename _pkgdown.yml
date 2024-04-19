@@ -14,5 +14,9 @@ reference:
   contents:
   - starts_with("plot_")
   - kit_summary_table
+- title: Validation Data
+  contents:
+  - has_concept("validation data")
+  - has_keyword("datasets")
 
 

@@ -21,7 +21,7 @@ plot_kit_use <- function(...,
                                            reported = reported)
 
   region <- model <- times <- data_var_name <- sim_reported_used <- p_use <- NULL
-  region_name <- NULL
+  region_name <- .data <- NULL
   p50 <- p05 <- p95 <- p25 <- p75 <- NULL
 
   # data variables that can be plotted if they exist
@@ -107,6 +107,7 @@ plot_kit_use <- function(...,
 #' @noRd
 combine_model_fits <- function(..., data = NULL, reported = FALSE) {
   sim_p <- i <- sim_reported_used <- NULL
+  Reported_Used <- Reported_Distributed <- NULL
 
   fit_list <- list(...)
 
