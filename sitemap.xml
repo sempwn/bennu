@@ -16,6 +16,9 @@
     <loc>https://sempwn.github.io/bennu/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://sempwn.github.io/bennu/articles/simulation_validation_experiments.html</loc>
+  </url>
+  <url>
     <loc>https://sempwn.github.io/bennu/authors.html</loc>
   </url>
   <url>
@@ -34,6 +37,9 @@
     <loc>https://sempwn.github.io/bennu/reference/est_naloxone_vec.html</loc>
   </url>
   <url>
+    <loc>https://sempwn.github.io/bennu/reference/experimental_validation_data.html</loc>
+  </url>
+  <url>
     <loc>https://sempwn.github.io/bennu/reference/generate_model_data.html</loc>
   </url>
   <url>
@@ -41,6 +47,9 @@
   </url>
   <url>
     <loc>https://sempwn.github.io/bennu/reference/kit_summary_table.html</loc>
+  </url>
+  <url>
+    <loc>https://sempwn.github.io/bennu/reference/missing_data_validation.html</loc>
   </url>
   <url>
     <loc>https://sempwn.github.io/bennu/reference/model_random_walk_data.html</loc>

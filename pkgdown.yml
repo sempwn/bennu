@@ -1,9 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   Introduction: Introduction.html
-last_built: 2024-03-14T22:26Z
+  simulation_validation_experiments: simulation_validation_experiments.html
+last_built: 2024-04-19T23:32Z
 urls:
   reference: https://sempwn.github.io/bennu/reference
   article: https://sempwn.github.io/bennu/articles

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -58,6 +58,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/Introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="../articles/simulation_validation_experiments.html">Simulation Validation Experiments</a>
     </li>
   </ul>
 </li>
@@ -135,7 +138,7 @@
 <span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
-<span><span class="co">#&gt; Warning: There were 28 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 7 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
 <span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
@@ -178,16 +181,16 @@
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 222 × 7</span></span></span>
 <span><span class="co">#&gt;    variable   mean median     sd    mad    q5   q95</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> sim_p[1]  0.235  0.232 0.059<span style="text-decoration: underline;">8</span> 0.067<span style="text-decoration: underline;">8</span> 0.153 0.335</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> sim_p[2]  0.242  0.237 0.052<span style="text-decoration: underline;">6</span> 0.055<span style="text-decoration: underline;">1</span> 0.171 0.335</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> sim_p[3]  0.233  0.230 0.049<span style="text-decoration: underline;">6</span> 0.055<span style="text-decoration: underline;">5</span> 0.158 0.320</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> sim_p[4]  0.227  0.220 0.051<span style="text-decoration: underline;">0</span> 0.052<span style="text-decoration: underline;">6</span> 0.158 0.316</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> sim_p[5]  0.227  0.222 0.041<span style="text-decoration: underline;">1</span> 0.042<span style="text-decoration: underline;">8</span> 0.169 0.296</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> sim_p[6]  0.229  0.222 0.040<span style="text-decoration: underline;">9</span> 0.038<span style="text-decoration: underline;">6</span> 0.174 0.306</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> sim_p[7]  0.228  0.226 0.033<span style="text-decoration: underline;">7</span> 0.030<span style="text-decoration: underline;">1</span> 0.177 0.284</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> sim_p[8]  0.259  0.255 0.032<span style="text-decoration: underline;">3</span> 0.029<span style="text-decoration: underline;">3</span> 0.207 0.311</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sim_p[9]  0.281  0.276 0.040<span style="text-decoration: underline;">7</span> 0.034<span style="text-decoration: underline;">6</span> 0.223 0.343</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sim_p[10] 0.293  0.287 0.038<span style="text-decoration: underline;">9</span> 0.037<span style="text-decoration: underline;">1</span> 0.235 0.361</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> sim_p[1]  0.256  0.247 0.079<span style="text-decoration: underline;">6</span> 0.078<span style="text-decoration: underline;">0</span> 0.145 0.396</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> sim_p[2]  0.257  0.254 0.068<span style="text-decoration: underline;">2</span> 0.065<span style="text-decoration: underline;">5</span> 0.154 0.381</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> sim_p[3]  0.254  0.250 0.054<span style="text-decoration: underline;">8</span> 0.046<span style="text-decoration: underline;">2</span> 0.168 0.355</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> sim_p[4]  0.240  0.238 0.050<span style="text-decoration: underline;">1</span> 0.044<span style="text-decoration: underline;">2</span> 0.165 0.326</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> sim_p[5]  0.239  0.231 0.057<span style="text-decoration: underline;">6</span> 0.049<span style="text-decoration: underline;">0</span> 0.158 0.346</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> sim_p[6]  0.240  0.233 0.056<span style="text-decoration: underline;">4</span> 0.047<span style="text-decoration: underline;">2</span> 0.156 0.333</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> sim_p[7]  0.228  0.228 0.041<span style="text-decoration: underline;">4</span> 0.040<span style="text-decoration: underline;">7</span> 0.169 0.298</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> sim_p[8]  0.240  0.241 0.041<span style="text-decoration: underline;">2</span> 0.036<span style="text-decoration: underline;">9</span> 0.168 0.306</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sim_p[9]  0.243  0.238 0.045<span style="text-decoration: underline;">7</span> 0.044<span style="text-decoration: underline;">4</span> 0.180 0.319</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sim_p[10] 0.253  0.248 0.046<span style="text-decoration: underline;">5</span> 0.041<span style="text-decoration: underline;">4</span> 0.186 0.336</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 212 more rows</span></span></span></code></pre></div>
 <p>We can plot the posterior predictive distribution of the probability
 of prior kit use and compare to simulated data using the
@@ -220,12 +223,12 @@ check by re-running the model without the likelihood by setting the
 <span>  run_estimation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  iter <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 2 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 31 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
-<span><span class="co">#&gt; Warning: There were 3 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; Warning: There were 2 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
-<span><span class="co">#&gt; Warning: There were 3 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
+<span><span class="co">#&gt; Warning: There were 2 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
@@ -269,7 +272,10 @@ month to be smaller by setting the standard deviation of the prior for
 <span>  sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="fl">0</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">nondefault_prior_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/est_naloxone.html">est_naloxone</a></span><span class="op">(</span><span class="va">d</span>, iter <span class="op">=</span> <span class="fl">100</span>, priors <span class="op">=</span> <span class="va">nondefault_priors</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 4 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; Warning: There were 51 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
+<span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
+<span><span class="co">#&gt; Warning: There were 1 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
 <span><span class="co">#&gt; Warning: The largest R-hat is NA, indicating chains have not mixed.</span></span>
@@ -310,9 +316,11 @@ probability of naloxone use in time.</p>
 <span>  rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  iter <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 25 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 11 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
+<span><span class="co">#&gt; Warning: There were 11 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
 <span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
@@ -336,16 +344,16 @@ probability of naloxone use in time.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 222 × 4</span></span></span>
 <span><span class="co">#&gt;    variable   rhat ess_bulk ess_tail</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> sim_p[1]   1.15     69.7    119. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> sim_p[2]   1.11     64.6    104. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> sim_p[3]   1.15     79.3    132. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> sim_p[4]   1.07     69.0     91.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> sim_p[5]   1.05     88.5    136. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> sim_p[6]   1.02     91.9    134. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> sim_p[7]   1.05     74.4    215. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> sim_p[8]   1.02    139.     232. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sim_p[9]   1.02    120.     191. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sim_p[10]  1.06    119.     107. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> sim_p[1]   1.24     14.7     82.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> sim_p[2]   1.22     16.3     93.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> sim_p[3]   1.22     15.5    114. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> sim_p[4]   1.18     19.3     38.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> sim_p[5]   1.10     34.0     78.4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> sim_p[6]   1.13     62.7     48.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> sim_p[7]   1.09    131.     126. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> sim_p[8]   1.12    137.      26.4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sim_p[9]   1.04    151.      88.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sim_p[10]  1.12    128.      60.0</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 212 more rows</span></span></span></code></pre></div>
 <p>We can compare two different model fits of the probability of prior
 kit use to simulated data using the <code>plot_kit_use</code>
@@ -378,9 +386,11 @@ months</p>
 <span>  rw_type <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  iter <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There were 9 divergent transitions after warmup. See</span></span>
+<span><span class="co">#&gt; Warning: There were 8 divergent transitions after warmup. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></span>
 <span><span class="co">#&gt; to find out why this is a problem and how to eliminate them.</span></span>
+<span><span class="co">#&gt; Warning: There were 1 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See</span></span>
+<span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</span></span>
 <span><span class="co">#&gt; Warning: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See</span></span>
 <span><span class="co">#&gt; https://mc-stan.org/misc/warnings.html#bfmi-low</span></span>
 <span><span class="co">#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</span></span>
@@ -467,7 +477,7 @@ updated when considering another jurisdiction,</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
