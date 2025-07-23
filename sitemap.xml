@@ -1,63 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://sempwn.github.io/bennu/404.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/articles/Introduction.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/articles/simulation_validation_experiments.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/bennu-package.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/est_naloxone.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/est_naloxone_vec.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/experimental_validation_data.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/generate_model_data.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/kit_summary_table.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/missing_data_validation.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/model_random_walk_data.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://sempwn.github.io/bennu/reference/plot_kit_use.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://sempwn.github.io/bennu/404.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/LICENSE-text.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/LICENSE.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/articles/Introduction.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/articles/index.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/articles/simulation_validation_experiments.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/authors.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/index.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/news/index.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/bennu-package.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/est_naloxone.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/est_naloxone_vec.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/experimental_validation_data.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/generate_model_data.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/index.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/kit_summary_table.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/missing_data_validation.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/model_random_walk_data.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/pipe.html</loc></url>
+<url><loc>https://sempwn.github.io/bennu/reference/plot_kit_use.html</loc></url>
 </urlset>
+
