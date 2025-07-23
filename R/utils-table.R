@@ -10,7 +10,7 @@
 #'  - probability kit used if distributed
 #'
 #'
-#' @param fit [stanfit] object
+#' @param fit [rstan::stanfit] object
 #' @param ... variables to group by in estimate
 #' @param data data used for model fitting. Can also include `p_use` column
 #' which can be used to plot true values if derived from simulated data.

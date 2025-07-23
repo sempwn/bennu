@@ -7,7 +7,7 @@
 plot_kit_use(..., data = NULL, reported = FALSE, regions_to_plot = NULL)
 }
 \arguments{
-\item{...}{named list of \link{stanfit} objects}
+\item{...}{named list of \link[rstan:stanfit-class]{rstan::stanfit} objects}
 
 \item{data}{data used for model fitting. Can also include \code{p_use} column
 which can be used to plot true values if derived from simulated data.}
@@ -19,7 +19,7 @@ which is equivalent to the predictive check.}
 plotted}
 }
 \value{
-\link{ggplot2} object
+\link[ggplot2:ggplot]{ggplot2::ggplot} object
 }
 \description{
 plot can compare between two different model fits or a single

@@ -3,14 +3,14 @@
 #' model fit by region. If data are simulated then can also include in plot.
 #' For more details see the introduction vignette:
 #' \code{vignette("Introduction", package = "bennu")}
-#' @param ... named list of [stanfit] objects
+#' @param ... named list of [rstan::stanfit] objects
 #' @param data data used for model fitting. Can also include `p_use` column
 #' which can be used to plot true values if derived from simulated data.
 #' @param reported if `TRUE` then produces a plot of the reported kits
 #' which is equivalent to the predictive check.
 #' @param regions_to_plot Optional list to filter which regions are
 #' plotted
-#' @return [ggplot2] object
+#' @return [ggplot2::ggplot] object
 #' @export
 #' @family plots
 plot_kit_use <- function(...,

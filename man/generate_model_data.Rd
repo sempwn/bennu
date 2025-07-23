@@ -22,7 +22,7 @@ generate_model_data(
 If \code{NULL} distribution frequency matches orders frequency}
 }
 \value{
-A \link{tibble}
+A \code{\link[tibble:tibble]{tibble::tibble()}}
 \describe{
 \item{Orders}{Kit orders per time and region}
 \item{regions}{Numeric index indicating region of orders and distributions}
