@@ -11,3 +11,21 @@ Bayesian Estimation of Naloxone use Number Under-reporting
 \references{
 Stan Development Team (2020). RStan: the R interface to Stan. R package version 2.21.2. https://mc-stan.org
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://sempwn.github.io/bennu/}
+  \item Report bugs at \url{https://github.com/sempwn/bennu/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Mike Irvine \email{mike.irvine@bccdc.ca} (\href{https://orcid.org/0000-0003-4785-8998}{ORCID}) [copyright holder]
+
+Other contributors:
+\itemize{
+  \item Samantha Bardwell [contributor]
+  \item Andrew Johnson [contributor]
+}
+
+}

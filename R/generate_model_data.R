@@ -20,7 +20,7 @@
 #' @param c_region logit probability of kit use per region
 #' @param reporting_freq The frequency that distribution data is provided.
 #'  If `NULL` distribution frequency matches orders frequency
-#' @return A [tibble]
+#' @return A [tibble::tibble()]
 #' \describe{
 #'   \item{Orders}{Kit orders per time and region}
 #'   \item{regions}{Numeric index indicating region of orders and distributions}

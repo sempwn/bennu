@@ -24,4 +24,9 @@ experimental_validation_data
 \description{
 Generated data from validation experiments of simulated data
 }
+\seealso{
+Other validation data: 
+\code{\link{missing_data_validation}}
+}
+\concept{validation data}
 \keyword{datasets}

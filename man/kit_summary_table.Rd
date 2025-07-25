@@ -14,7 +14,7 @@ kit_summary_table(
 )
 }
 \arguments{
-\item{fit}{\link{stanfit} object}
+\item{fit}{\link[rstan:stanfit-class]{rstan::stanfit} object}
 
 \item{...}{variables to group by in estimate}
 
