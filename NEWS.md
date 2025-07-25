@@ -1,4 +1,4 @@
-# bennu (development version)
+# bennu 0.3.1
 
 * Plan to release simplified version of regression model
 
