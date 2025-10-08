@@ -10,4 +10,5 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
+^Dockerfile$
 ^data-raw$
