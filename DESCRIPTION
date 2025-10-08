@@ -15,7 +15,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Biarch: true
 Depends: 
     R (>= 3.4.0)
@@ -31,7 +31,7 @@ Imports:
     RcppParallel (>= 5.0.1),
     rlang,
     rstan (>= 2.26.0),
-    rstantools (>= 2.2.0),
+    rstantools (>= 2.5.0),
     scales,
     tidybayes,
     tidyr

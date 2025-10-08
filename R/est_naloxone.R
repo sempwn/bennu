@@ -234,7 +234,7 @@ est_naloxone <- function(d,
   region_name <- d[[region_name_label]]
 
   Orders2D <- d %>%
-    tidyr::pivot_wider(regions, names_from = times, values_from = Orders) %>%
+    tidyr::pivot_wider(id_cols = regions, names_from = times, values_from = Orders) %>%
     dplyr::select(-regions) %>%
     as.matrix()
 

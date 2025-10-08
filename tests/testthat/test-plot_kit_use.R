@@ -16,7 +16,7 @@ test_that("plot three layers if not included data", {
 
 test_that("Creates ggplot object if using reported argument", {
   plt <- plot_kit_use(rw_1 = fit, rw_2 = fit, reported = TRUE, data = d)
-  testthat::expect_true(ggplot2::is.ggplot(plt))
+  testthat::expect_true(ggplot2::is_ggplot(plt))
 })
 
 test_that("Only plots reported data if have missing data", {
@@ -32,5 +32,5 @@ test_that("Only plots reported data if have missing data", {
 
 test_that("Creates ggplot object", {
   plt <- plot_kit_use(rw_1 = fit, rw_2 = fit, data = d)
-  testthat::expect_true(ggplot2::is.ggplot(plt))
+  testthat::expect_true(ggplot2::is_ggplot(plt))
 })
