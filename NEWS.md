@@ -1,3 +1,5 @@
+# bennu 0.3.2
+
 
 * Fix `stringr` issue in tests (#44)
 
