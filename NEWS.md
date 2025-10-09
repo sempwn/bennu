@@ -1,3 +1,6 @@
+
+* Fix `stringr` issue in tests (#44)
+
 # bennu 0.3.1
 
 * Plan to release simplified version of regression model

@@ -46,7 +46,7 @@ library(bennu)
 library(rstan)
 #> Loading required package: StanHeaders
 #> 
-#> rstan version 2.26.22 (Stan version 2.26.1)
+#> rstan version 2.32.7 (Stan version 2.32.2)
 #> For execution on a local, multicore CPU with excess RAM we recommend calling
 #> options(mc.cores = parallel::detectCores()).
 #> To avoid recompilation of unchanged Stan programs, we recommend calling
@@ -54,9 +54,8 @@ library(rstan)
 #> For within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,
 #> change `threads_per_chain` option:
 #> rstan_options(threads_per_chain = 1)
-#> Do not specify '-march=native' in 'LOCAL_CPPFLAGS' or a Makevars file
 library(bayesplot)
-#> This is bayesplot version 1.10.0
+#> This is bayesplot version 1.14.0
 #> - Online documentation and vignettes at mc-stan.org/bayesplot
 #> - bayesplot theme set to bayesplot::theme_default()
 #>    * Does _not_ affect other ggplot2 plots
@@ -75,15 +74,15 @@ mcmc_pairs(fit, pars = c("sigma","mu0","zeta"),
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
-An overall summary of the model output can also be provided as a
-datframe
+An overall summary of the model output can also be provided as a data
+frame
 
 ``` r
 kit_summary_table(fit, data = d)
 #> # A tibble: 1 × 6
 #>   Probability of kit use if dist…¹ Estimated as distrib…² Proportion kits dist…³
 #>   <glue>                           <glue>                 <glue>                
-#> 1 65.34% (95% CrI: 18.31% - 96.36… 24,909.00 (95% CrI: 2… 58.72% (95% CrI: 58.1…
+#> 1 64.97% (95% CrI: 12.93% - 96.79… 24,907.00 (95% CrI: 2… 21.03% (95% CrI: 20.8…
 #> # ℹ abbreviated names: ¹​`Probability of kit use if distributed`,
 #> #   ²​`Estimated as distributed`,
 #> #   ³​`Proportion kits distributed that are reported`
